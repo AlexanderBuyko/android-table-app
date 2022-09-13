@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/lClRootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/lLlComponentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_giant"
+            android:gravity="center_horizontal"
+            android:text="Hello Again!"
+            android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:gravity="center_horizontal"
+            android:text="Welcome back you’ve been missed!"
+            android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L"
+            android:textColor="@color/dove_gray" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/Theme.Table.Widget.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_huge"
+            android:layout_marginTop="@dimen/margin_huge"
+            android:hint="Phone number" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/iSplashLayout"
+        layout="@layout/layout_splash" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
