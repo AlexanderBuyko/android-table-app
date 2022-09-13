@@ -14,6 +14,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
+import androidx.lifecycle.lifecycleScope
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +28,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initComponents()
-        
+
         handleSplashDuration()
         handleSplashExitAnimation()
         handleSystemInsets()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            prepareForSplashExitAnimation()
+        }
+    }
+
+    private fun prepareForSplashExitAnimation() {
+        lifecycleScope.launchWhenResumed {
+            val bitmap = splashIcon.drawToBitmap()
+            val leftBitmapPart = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width / 2, bitmap.height)
+            val rightBitmapPart = Bitmap.createBitmap(bitmap, bitmap.width / 2, 0, bitmap.width / 2, bitmap.height)
+            curtainLeft.setImageBitmap(leftBitmapPart)
+            curtainRight.setImageBitmap(rightBitmapPart)
+        }
     }
 
     private fun initComponents() {
@@ -60,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         content.viewTreeObserver.addOnPreDrawListener(
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
-                    return if (currentTimeMillis + 1200 < System.currentTimeMillis()) {
+                    return if (currentTimeMillis + MINIMUM_SPLASH_ANIMATION_DURATION < System.currentTimeMillis()) {
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
                     } else {
@@ -74,12 +92,6 @@ class MainActivity : AppCompatActivity() {
     private fun handleSplashExitAnimation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
-
-                val bitmap = splashIcon.drawToBitmap()
-                val leftBitmapPart = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width / 2, bitmap.height)
-                val rightBitmapPart = Bitmap.createBitmap(bitmap, bitmap.width / 2, 0, bitmap.width / 2, bitmap.height)
-                curtainLeft.setImageBitmap(leftBitmapPart)
-                curtainRight.setImageBitmap(rightBitmapPart)
                 val slideLeft = ObjectAnimator.ofFloat(curtainLeft, View.TRANSLATION_X, 0f, -curtainLeft.width.toFloat())
                 val alphaLeft = ObjectAnimator.ofFloat(curtainLeft, "alpha", 1f, 0f)
                 val slideRight = ObjectAnimator.ofFloat(curtainRight, View.TRANSLATION_X, 0f, curtainRight.width.toFloat())
@@ -100,11 +112,11 @@ class MainActivity : AppCompatActivity() {
 
                 val bulletFlyingAnim =
                     ObjectAnimator.ofFloat(bullet, View.TRANSLATION_Y, 0f, componentContainer.height.toFloat()).apply {
-                    interpolator = DecelerateInterpolator()
-                    duration = BULLET_FLYING_ANIMATION_DURATION
+                        interpolator = DecelerateInterpolator()
+                        duration = BULLET_FLYING_ANIMATION_DURATION
 
-                    doOnEnd { bullet.visibility = View.VISIBLE }
-                }
+                        doOnEnd { bullet.visibility = View.VISIBLE }
+                    }
 
                 AnimatorSet().apply {
                     playTogether(bulletFlyingAnim, curtainsPullingAnim)
@@ -118,5 +130,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val CURTAINS_PULLING_ANIMATION_DURATION = 1000L
         private const val BULLET_FLYING_ANIMATION_DURATION = 500L
+        private const val MINIMUM_SPLASH_ANIMATION_DURATION = 1200
     }
 }
