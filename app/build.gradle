@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.tableapplication"
+        applicationId "com.demonstration.table"
         minSdk 23
         targetSdk 33
         versionCode 1

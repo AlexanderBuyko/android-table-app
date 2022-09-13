@@ -1,4 +1,4 @@
-package com.example.tableapplication
+package com.demonstation.table
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,6 +15,7 @@ import androidx.core.animation.doOnStart
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
+import com.demonstration.table.R
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

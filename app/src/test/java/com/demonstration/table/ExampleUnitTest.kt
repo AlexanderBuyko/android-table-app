@@ -1,4 +1,4 @@
-package com.example.tableapplication
+package com.demonstration.table
 
 import org.junit.Test
 
