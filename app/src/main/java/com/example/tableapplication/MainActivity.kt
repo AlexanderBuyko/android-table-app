@@ -84,8 +84,6 @@ class MainActivity : AppCompatActivity() {
                 val alphaLeft = ObjectAnimator.ofFloat(curtainLeft, "alpha", 1f, 0f)
                 val slideRight = ObjectAnimator.ofFloat(curtainRight, View.TRANSLATION_X, 0f, curtainRight.width.toFloat())
                 val alphaRight = ObjectAnimator.ofFloat(curtainRight, "alpha", 1f, 0f)
-                
-                splashScreenView.remove()
 
                 val curtainsPullingAnim = AnimatorSet().apply {
                     playTogether(slideLeft, alphaLeft, slideRight, alphaRight)
@@ -110,6 +108,7 @@ class MainActivity : AppCompatActivity() {
 
                 AnimatorSet().apply {
                     playTogether(bulletFlyingAnim, curtainsPullingAnim)
+                    doOnStart { splashScreenView.remove() }
                     start()
                 }
             }

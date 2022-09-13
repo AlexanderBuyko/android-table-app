@@ -24,7 +24,7 @@
         <item name="colorOnBackground">@color/night_rider</item>
         <item name="colorPrimary">@color/night_rider</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDisabled">@color/cod_gray</item>
+        <item name="colorPrimaryDisabled">@color/dove_gray</item>
         <item name="colorSecondary">@color/wild_sand</item>
         <item name="colorControlNormal">@color/dove_gray</item>
         <item name="rippleColor">@color/cod_gray_10</item>

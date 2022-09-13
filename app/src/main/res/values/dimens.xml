@@ -18,7 +18,7 @@
 
     <dimen name="margin_giant">64dp</dimen>
     <dimen name="margin_xhuge">52dp</dimen>
-    <dimen name="margin_huge">40dp</dimen>
+    <dimen name="margin_huge">36dp</dimen>
     <dimen name="margin_xlarge">32dp</dimen>
     <dimen name="margin_large">24dp</dimen>
     <dimen name="margin_normal">20dp</dimen>
@@ -32,7 +32,6 @@
     <dimen name="corner_radius_small">4dp</dimen>
 
     <dimen name="button_min_height">63dp</dimen>
-    <dimen name="button_corner_radius">22dp</dimen>
     <dimen name="input_field_min_height">56dp</dimen>
 
     <dimen name="splash_icon_padding">44dp</dimen>
