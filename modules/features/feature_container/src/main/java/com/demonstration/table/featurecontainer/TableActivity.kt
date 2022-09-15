@@ -18,6 +18,7 @@ import com.demonstration.table.coreapi.holders.ProvidersHolder
 import com.demonstration.table.featurecomponentsapi.ComponentsMediator
 import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
+import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -29,6 +30,9 @@ class TableActivity : AppCompatActivity() {
     @Inject
     lateinit var containerMediator: ComponentsMediator
 
+    @Inject
+    lateinit var registrationMediator: RegistrationMediator
+
     private lateinit var binding: ActivityTableBinding
     private lateinit var splashBinding: LayoutSplashBinding
 
@@ -39,6 +43,12 @@ class TableActivity : AppCompatActivity() {
     private val bullet by lazy { splashBinding.vIvBullet }
 
     private var exitAnimationPreparation: Deferred<Unit>? = null
+
+    /*
+    * Properties, used to create smooth animation for ime opening.
+    * */
+    private var startContainerBottom = 0f
+    private var endContainerBottom = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +66,8 @@ class TableActivity : AppCompatActivity() {
     }
 
     private fun startFragment() {
-        containerMediator.openComponentsContainerScreen(
-            supportFragmentManager,
-            R.id.vFragmentContainer
+        registrationMediator.openRegistrationScreen(
+            supportFragmentManager, R.id.vFragmentContainer
         )
     }
 
@@ -99,6 +108,37 @@ class TableActivity : AppCompatActivity() {
             view.updatePadding(top = insets.top, bottom = insets.bottom)
             WindowInsetsCompat.CONSUMED
         }
+        ViewCompat.setWindowInsetsAnimationCallback(componentContainer, object :
+            WindowInsetsAnimationCompat.Callback(DISPATCH_MODE_STOP) {
+
+            override fun onPrepare(animation: WindowInsetsAnimationCompat) {
+                super.onPrepare(animation)
+                startContainerBottom = componentContainer.bottom.toFloat()
+            }
+
+            override fun onStart(
+                animation: WindowInsetsAnimationCompat,
+                bounds: WindowInsetsAnimationCompat.BoundsCompat
+            ): WindowInsetsAnimationCompat.BoundsCompat {
+                endContainerBottom = componentContainer.bottom.toFloat()
+                return bounds
+            }
+
+            override fun onProgress(
+                insets: WindowInsetsCompat,
+                runningAnimations: MutableList<WindowInsetsAnimationCompat>
+            ): WindowInsetsCompat {
+                val imeAnimation = runningAnimations.find {
+                    it.typeMask and WindowInsetsCompat.Type.ime() != 0
+                } ?: return insets
+
+                // Offset the view based on the interpolated fraction of the IME animation.
+                componentContainer.translationY =
+                    (startContainerBottom - endContainerBottom) * (1 - imeAnimation.interpolatedFraction)
+
+                return insets
+            }
+        })
     }
 
     private fun handleSplashDuration() {
