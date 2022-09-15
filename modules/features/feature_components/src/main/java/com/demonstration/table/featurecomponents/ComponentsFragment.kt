@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.demonstration.table.featurecomponents.R
 import com.demonstration.table.coreapi.holders.ProvidersHolder
 
 class ComponentsFragment : Fragment() {
@@ -28,7 +27,8 @@ class ComponentsFragment : Fragment() {
     }
 
     private fun initDaggerComponent() {
-        ComponentsComponent.create((context as ProvidersHolder).getAggregatingProvider())
+        ComponentsComponent
+            .create((requireActivity().application as ProvidersHolder).getAggregatingProvider())
             .inject(this)
     }
 
