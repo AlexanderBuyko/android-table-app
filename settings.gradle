@@ -11,6 +11,17 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    enableFeaturePreview('VERSION_CATALOGS')
 }
+
 rootProject.name = "Table Application"
 include ':app'
+include ':modules:celebrity:core_impl'
+include ':modules:celebrity:core_factory'
+include ':modules:celebrity:core_api'
+include ':modules:base:base_table'
+include ':modules:base:base_ui'
+include ':modules:features:feature_register'
+include ':modules:features:feature_container'
+include ':modules:features:feature_components'
+include ':modules:features:feature_componentsapi'

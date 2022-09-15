@@ -11,6 +11,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/base" />
+            <option value="$PROJECT_DIR$/modules/base/base_table" />
+            <option value="$PROJECT_DIR$/modules/base/base_ui" />
+            <option value="$PROJECT_DIR$/modules/celebrity" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_api" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_factory" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_impl" />
+            <option value="$PROJECT_DIR$/modules/features" />
+            <option value="$PROJECT_DIR$/modules/features/feature_components" />
+            <option value="$PROJECT_DIR$/modules/features/feature_componentsapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_container" />
+            <option value="$PROJECT_DIR$/modules/features/feature_register" />
           </set>
         </option>
       </GradleProjectSettings>
