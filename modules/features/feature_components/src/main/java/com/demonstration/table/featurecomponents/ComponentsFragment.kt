@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.demonstration.table.coreapi.holders.ProvidersHolder
+import com.demonstration.table.coreapi.ProvidersHolder
 
 class ComponentsFragment : Fragment() {
 

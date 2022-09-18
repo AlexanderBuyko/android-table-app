@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.demonstration.table.featureregistration.databinding.FragmentRegistrationBinding
-import com.demonstration.table.coreapi.holders.ProvidersHolder
+import com.demonstration.table.coreapi.ProvidersHolder
 import com.example.baseui.extentions.*
 import com.example.baseui.R as baseR
 

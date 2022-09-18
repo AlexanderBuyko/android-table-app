@@ -2,7 +2,7 @@ package com.demonstration.table
 
 import android.app.Application
 import com.demonstration.table.coreapi.providers.AggregatingProvider
-import com.demonstration.table.coreapi.holders.ProvidersHolder
+import com.demonstration.table.coreapi.ProvidersHolder
 import com.demonstration.table.corefactory.CelebrityFactory
 
 open class TableApp : Application(), ProvidersHolder {

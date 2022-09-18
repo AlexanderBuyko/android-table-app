@@ -14,7 +14,7 @@ import androidx.core.animation.doOnStart
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
-import com.demonstration.table.coreapi.holders.ProvidersHolder
+import com.demonstration.table.coreapi.ProvidersHolder
 import com.demonstration.table.featurecomponentsapi.ComponentsMediator
 import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding

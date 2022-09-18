@@ -1,4 +1,4 @@
-package com.demonstration.table.coreapi.holders
+package com.demonstration.table.coreapi
 
 import com.demonstration.table.coreapi.providers.AggregatingProvider
 
