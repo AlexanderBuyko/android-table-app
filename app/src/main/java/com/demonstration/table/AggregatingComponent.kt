@@ -1,5 +1,6 @@
 package com.demonstration.table
 
+import com.demonstration.table.featureregistration.RegistrationExternalModule
 import com.demonstration.table.featurecomponents.ComponentsExternalModule
 import com.demonstration.table.coreapi.providers.AggregatingProvider
 import com.demonstration.table.coreapi.providers.CoreProvider
@@ -7,7 +8,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Component(
-    modules = [ComponentsExternalModule::class],
+    modules = [ComponentsExternalModule::class, RegistrationExternalModule::class],
     dependencies = [CoreProvider::class]
 )
 @Singleton

@@ -39,4 +39,12 @@
         <item name="android:textColorHint">@color/input_field_hint</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="Theme.Table.Widget.TextInputLayout" parent="">
+        <item name="boxBackgroundMode">none</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextAppearance">@style/Theme.Ava.TextAppearance.UI12R</item>
+        <item name="editTextColor">?attr/colorError</item>
+        <item name="hintEnabled">false</item>
+    </style>
 </resources>

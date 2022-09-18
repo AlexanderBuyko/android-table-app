@@ -52,4 +52,6 @@ dependencies {
     implementation project(":modules:features:feature_container")
     implementation project(":modules:features:feature_components")
     implementation project(":modules:features:feature_componentsapi")
+    implementation project(":modules:features:feature_registration")
+    implementation project(":modules:features:feature_registrationapi")
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="register_title">Register Now</string>
+    <string name="register_signature">Create an account and save\nthe selected bows</string>
+    <string name="register_phone_number_hint">Phone number</string>
+    <string name="register_email_hint">Email</string>
+    <string name="register_password_hint">Password</string>
+    <string name="register_create_button_title">Create Account</string>
+    <string name="register_have_account_signature">Already have an account?</string>
+    <string name="register_log_in_signature">Log In</string>
+
+</resources>

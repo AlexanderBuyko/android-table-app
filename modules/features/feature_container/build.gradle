@@ -34,12 +34,6 @@ android {
 }
 
 dependencies {
-    implementation project(":modules:base:base_ui")
-    implementation project(":modules:celebrity:core_api")
-    implementation project(":modules:celebrity:core_factory")
-    implementation project(":modules:features:feature_componentsapi")
-
-
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -50,4 +44,10 @@ dependencies {
 
     implementation(libs.dagger.core)
     kapt libs.dagger.compiler
+
+    implementation project(":modules:base:base_ui")
+    implementation project(":modules:celebrity:core_api")
+    implementation project(":modules:celebrity:core_factory")
+    implementation project(":modules:features:feature_componentsapi")
+    implementation project(":modules:features:feature_registrationapi")
 }

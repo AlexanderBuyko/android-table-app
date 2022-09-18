@@ -23,7 +23,8 @@
             <option value="$PROJECT_DIR$/modules/features/feature_components" />
             <option value="$PROJECT_DIR$/modules/features/feature_componentsapi" />
             <option value="$PROJECT_DIR$/modules/features/feature_container" />
-            <option value="$PROJECT_DIR$/modules/features/feature_register" />
+            <option value="$PROJECT_DIR$/modules/features/feature_registration" />
+            <option value="$PROJECT_DIR$/modules/features/feature_registrationapi" />
           </set>
         </option>
       </GradleProjectSettings>

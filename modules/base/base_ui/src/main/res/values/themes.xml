@@ -20,6 +20,7 @@
 
         <item name="android:windowBackground">?attr/colorBackground</item>
         <item name="colorSurface">@color/wild_sand</item>
+        <item name="colorAccent">@color/night_rider</item>
         <item name="colorError">@color/coral_red</item>
         <item name="colorOnBackground">@color/night_rider</item>
         <item name="colorPrimary">@color/night_rider</item>
