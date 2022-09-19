@@ -28,6 +28,7 @@
         <entry key="modules/features/feature_components/src/main/res/layout/fragment_components.xml" value="0.3182291666666667" />
         <entry key="modules/features/feature_container/src/main/res/layout/activity_table.xml" value="0.1" />
         <entry key="modules/features/feature_container/src/main/res/layout/layout_splash.xml" value="0.3182291666666667" />
+        <entry key="modules/features/feature_greeting/src/main/res/layout/fragment_greeting.xml" value="0.30593100590016714" />
         <entry key="modules/features/feature_registration/src/main/res/drawable/bg_sign_up_button.xml" value="0.173" />
         <entry key="modules/features/feature_registration/src/main/res/drawable/ic_eye.xml" value="0.173" />
         <entry key="modules/features/feature_registration/src/main/res/drawable/ic_eye_crossed.xml" value="0.173" />

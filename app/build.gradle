@@ -54,4 +54,6 @@ dependencies {
     implementation project(":modules:features:feature_componentsapi")
     implementation project(":modules:features:feature_registration")
     implementation project(":modules:features:feature_registrationapi")
+    implementation project(":modules:features:feature_greeting")
+    implementation project(":modules:features:feature_greetingapi")
 }

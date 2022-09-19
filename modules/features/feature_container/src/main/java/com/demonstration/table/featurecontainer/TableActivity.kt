@@ -18,6 +18,7 @@ import com.demonstration.table.coreapi.ProvidersHolder
 import com.demonstration.table.featurecomponentsapi.ComponentsMediator
 import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
+import com.demonstration.table.featuregreetingapi.GreetingMediator
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
@@ -32,6 +33,9 @@ class TableActivity : AppCompatActivity() {
 
     @Inject
     lateinit var registrationMediator: RegistrationMediator
+
+    @Inject
+    lateinit var greetingMediator: GreetingMediator
 
     private lateinit var binding: ActivityTableBinding
     private lateinit var splashBinding: LayoutSplashBinding
@@ -66,7 +70,7 @@ class TableActivity : AppCompatActivity() {
     }
 
     private fun startFragment() {
-        registrationMediator.openRegistrationScreen(
+        greetingMediator.openGreetingScreen(
             supportFragmentManager, R.id.vFragmentContainer
         )
     }

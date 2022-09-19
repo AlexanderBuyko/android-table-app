@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="greeting_title">Book your best\nseat today</string>
+    <string name="greeting_signature">We will simplify your difficult choice</string>
+    <string name="greeting_register_title">Register</string>
+    <string name="greeting_sign_in_title">Sign In</string>
+</resources>

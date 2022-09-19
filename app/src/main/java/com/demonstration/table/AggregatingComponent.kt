@@ -4,11 +4,12 @@ import com.demonstration.table.featureregistration.RegistrationExternalModule
 import com.demonstration.table.featurecomponents.ComponentsExternalModule
 import com.demonstration.table.coreapi.providers.AggregatingProvider
 import com.demonstration.table.coreapi.providers.CoreProvider
+import com.demonstration.table.featuregreeting.GreetingExternalModule
 import dagger.Component
 import javax.inject.Singleton
 
 @Component(
-    modules = [ComponentsExternalModule::class, RegistrationExternalModule::class],
+    modules = [ComponentsExternalModule::class, RegistrationExternalModule::class, GreetingExternalModule::class],
     dependencies = [CoreProvider::class]
 )
 @Singleton
