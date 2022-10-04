@@ -30,7 +30,7 @@ fun TextView.addSpannableParts(vararg parts: SpannablePart) {
         setTextAppearanceSpan(part, spannableString, partStartIndex)
         setClickableSpan(part, spannableString, partStartIndex)
     }
-    highlightColor = Color.TRANSPARENT;
+    highlightColor = Color.TRANSPARENT
     movementMethod = LinkMovementMethod.getInstance()
     setText(spannableString, TextView.BufferType.SPANNABLE)
 }

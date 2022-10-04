@@ -1,10 +1,9 @@
 package com.demonstration.table.featureregistrationapi
 
-import androidx.annotation.IdRes
-import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavController
 import com.demonstration.table.coreapi.CoreMediator
 
 interface RegistrationMediator: CoreMediator {
 
-    fun openRegistrationScreen(fragmentManager: FragmentManager, @IdRes container: Int)
+    fun openRegistrationScreen(navController: NavController)
 }

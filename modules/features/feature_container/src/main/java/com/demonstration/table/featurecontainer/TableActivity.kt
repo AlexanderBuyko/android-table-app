@@ -2,6 +2,7 @@ package com.demonstration.table.featurecontainer
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +15,13 @@ import androidx.core.animation.doOnStart
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
-import com.demonstration.table.coreapi.ProvidersHolder
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
+import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.coreapi.providers.activity.ActivityAggregatingProvider
+import com.demonstration.table.coreapi.providers.application.models.NavigationId
+import com.demonstration.table.corefactory.CelebrityFactory
 import com.demonstration.table.featurecomponentsapi.ComponentsMediator
 import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
@@ -26,7 +33,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.example.baseui.R as baseR
 
-class TableActivity : AppCompatActivity() {
+class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     @Inject
     lateinit var containerMediator: ComponentsMediator
@@ -37,8 +44,17 @@ class TableActivity : AppCompatActivity() {
     @Inject
     lateinit var greetingMediator: GreetingMediator
 
+    @Inject
+    lateinit var navigationId: NavigationId
+
     private lateinit var binding: ActivityTableBinding
     private lateinit var splashBinding: LayoutSplashBinding
+
+    private val navController: NavController
+        get() = navHostFragment.navController
+
+    private val navHostFragment: NavHostFragment
+        get() = supportFragmentManager.findFragmentById(R.id.vFragmentContainer) as NavHostFragment
 
     private val componentContainer by lazy { binding.vFragmentContainer }
     private val curtainLeft by lazy { splashBinding.vIvCurtainLeft }
@@ -54,31 +70,43 @@ class TableActivity : AppCompatActivity() {
     private var startContainerBottom = 0f
     private var endContainerBottom = 0f
 
+    override fun getActivityAggregatingProvider(): ActivityAggregatingProvider {
+        return activityAggregatingProvider
+            ?: run<ActivityAggregatingProvider> {
+                TableActivityComponent.create(
+                    (application as AppProvidersHolder).getAggregatingProvider(),
+                    CelebrityFactory.createNavControllerProvider(navController)
+                ).also { component ->
+                    component.inject(this)
+                    activityAggregatingProvider = component
+                }
+            }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTableBinding.inflate(layoutInflater)
         splashBinding = LayoutSplashBinding.bind(binding.root)
         setContentView(binding.root)
         initDaggerComponent()
+        initNavigationGraph()
         initComponents()
 
-        startFragment()
+        startGreetingFragment()
 
         handleSplashDuration()
         handleSplashExitAnimation()
         handleSystemInsets()
     }
 
-    private fun startFragment() {
-        greetingMediator.openGreetingScreen(
-            supportFragmentManager, R.id.vFragmentContainer
-        )
+    override fun onDestroy() {
+        super.onDestroy()
+        activityAggregatingProvider = null
     }
 
-    private fun initDaggerComponent() {
-        TableActivityComponent
-            .create((application as ProvidersHolder).getAggregatingProvider())
-            .inject(this)
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navController.handleDeepLink(intent)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -86,6 +114,21 @@ class TableActivity : AppCompatActivity() {
         if (hasFocus) {
             prepareForSplashExitAnimation()
         }
+    }
+
+    private fun startGreetingFragment() {
+        greetingMediator.openGreetingScreen(navController)
+    }
+
+    private fun initDaggerComponent() {
+        getActivityAggregatingProvider()
+    }
+
+    private fun initNavigationGraph() {
+        navController
+            .navInflater
+            .inflate(navigationId.value)
+            .also { navGraph -> navController.graph = navGraph }
     }
 
     private fun prepareForSplashExitAnimation() {
@@ -207,5 +250,7 @@ class TableActivity : AppCompatActivity() {
         private const val CURTAINS_PULLING_ANIMATION_DURATION = 1000L
         private const val BULLET_FLYING_ANIMATION_DURATION = 500L
         private const val MINIMUM_SPLASH_ANIMATION_DURATION = 1200
+
+        private var activityAggregatingProvider: ActivityAggregatingProvider? = null
     }
 }

@@ -8,7 +8,7 @@ import com.example.baseui.R
 import com.google.android.material.textfield.TextInputLayout
 
 class NoChangingBackgroundTextInputLayout : TextInputLayout {
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Sign in texts  -->
+    <string name="sign_in_title">Hello Again!</string>
+    <string name="sign_in_signature">Welcome back you’ve been missed!</string>
+    <string name="sign_in_phone_number_hint">Phone number</string>
+    <string name="sign_in_password_hint">Password</string>
+    <string name="sign_in_recovery_title">Recovery Password?</string>
+    <string name="sign_in_button_title">Sign In</string>
+    <string name="sign_in_member_signature">Not a member?</string>
+    <string name="sign_in_register_signature">Register now</string>
+
+    <!--  Recovery texts  -->
+    <string name="recovery_title">Recovery</string>
+    <string name="recovery_signature">Enter your email to which you receive\na link to reset your password</string>
+    <string name="recovery_email_hint">Email</string>
+    <string name="recovery_button_title">Sign In</string>
+
+</resources>

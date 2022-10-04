@@ -18,9 +18,11 @@
             android:name=".featurecontainer.TableActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
+            <nav-graph android:value="@navigation/nav_graph" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

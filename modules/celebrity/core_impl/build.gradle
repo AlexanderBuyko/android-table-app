@@ -40,6 +40,7 @@ dependencies {
 
     implementation libs.dagger.core
     kapt libs.dagger.compiler
+    implementation libs.bundles.navigation
 
     api project(":modules:celebrity:core_api")
 }
