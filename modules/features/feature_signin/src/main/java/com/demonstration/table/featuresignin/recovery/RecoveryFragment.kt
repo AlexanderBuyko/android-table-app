@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.featuregreetingapi.GreetingMediator
 import com.demonstration.table.featuresignin.SignInComponent
 import com.demonstration.table.featuresignin.databinding.FragmentRecoveryBinding
 import com.demostration.table.basetable.base.BaseFragment
@@ -16,6 +18,12 @@ import javax.inject.Inject
 
 
 class RecoveryFragment : BaseFragment<FragmentRecoveryBinding>() {
+
+    @Inject
+    lateinit var greetingMediator: GreetingMediator
+
+    @Inject
+    lateinit var navController: NavController
 
     override val bindingProvider = { inflater: LayoutInflater, parent: ViewGroup? ->
         FragmentRecoveryBinding.inflate(inflater, parent,false)
@@ -50,20 +58,19 @@ class RecoveryFragment : BaseFragment<FragmentRecoveryBinding>() {
     private fun setupViews() {
         with(binding) {
             vMbSignIn.setSafeOnClickListener {
-                requireActivity().apply {
+/*                requireActivity().apply {
                     val intent = packageManager.getLaunchIntentForPackage(packageName)
                     val componentName = intent?.component
                     val mainIntent = Intent.makeRestartActivityTask(componentName)
                     startActivity(mainIntent)
                     Runtime.getRuntime().exit(0)
-                }
+                }*/
+                greetingMediator.openGreetingScreen(navController)
             }
         }
     }
 
     companion object {
         val TAG: String = RecoveryFragment::class.java.name
-
-        fun newInstance() = RecoveryFragment()
     }
 }

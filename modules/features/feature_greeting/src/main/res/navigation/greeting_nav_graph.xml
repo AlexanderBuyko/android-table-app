@@ -10,7 +10,7 @@
         android:name="com.demonstration.table.featuregreeting.GreetingFragment"
         android:label="fragment_greeting"
         tools:layout="@layout/fragment_greeting">
-    </fragment>
 
-    <deepLink app:uri="android-app://table.demonstration.com/greeting" />
+        <deepLink app:uri="android-app://table.demonstration.com/greeting" />
+    </fragment>
 </navigation>
