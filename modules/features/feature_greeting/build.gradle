@@ -47,6 +47,7 @@ dependencies {
 
     implementation libs.dagger.core
     kapt libs.dagger.compiler
+    implementation libs.bundles.navigation
 
     implementation project(":modules:celebrity:core_api")
     implementation project(":modules:base:base_ui")
@@ -54,4 +55,5 @@ dependencies {
     implementation project(":modules:features:feature_container")
     implementation project(":modules:features:feature_greetingapi")
     implementation project(":modules:features:feature_registrationapi")
+    implementation project(":modules:features:feature_signinapi")
 }

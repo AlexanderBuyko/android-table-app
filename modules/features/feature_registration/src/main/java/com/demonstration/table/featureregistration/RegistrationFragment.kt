@@ -8,21 +8,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
+import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featureregistration.databinding.FragmentRegistrationBinding
-import com.demonstration.table.coreapi.ProvidersHolder
+import com.demonstration.table.featuresigninapi.SignInMediator
+import com.demostration.table.basetable.base.BaseFragment
 import com.example.baseui.extentions.*
+import javax.inject.Inject
 import com.example.baseui.R as baseR
 
 
-class RegistrationFragment : Fragment() {
+class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
 
-    private var _binding: FragmentRegistrationBinding? = null
+    @Inject
+    lateinit var signInMediator: SignInMediator
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    @Inject
+    lateinit var navController: NavController
+
+    override val bindingProvider = { inflater: LayoutInflater, parent: ViewGroup? ->
+        FragmentRegistrationBinding.inflate(inflater, parent, false)
+    }
 
     private lateinit var viewModel: RegistrationViewModel
 
@@ -32,23 +40,17 @@ class RegistrationFragment : Fragment() {
         initViewModel()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupViews()
-        return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     private fun initDaggerComponent() {
         RegistrationComponent
-            .create((requireActivity().application as ProvidersHolder).getAggregatingProvider())
+            .create(
+                (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
+                (requireActivity() as ActivityProvidersHolder).getActivityAggregatingProvider()
+            )
             .inject(this)
     }
 
@@ -124,11 +126,7 @@ class RegistrationFragment : Fragment() {
             getString(R.string.register_log_in_signature),
             baseR.style.Theme_Ava_TextAppearance_UI14SB
         ) {
-            Toast.makeText(context, "Log In clicked", Toast.LENGTH_SHORT).show()
+            signInMediator.openSignInScreen(navController)
         }
-    }
-
-    companion object {
-        fun newInstance() = RegistrationFragment()
     }
 }

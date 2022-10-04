@@ -1,4 +1,4 @@
-package com.demonstration.table.coreapi.providers
+package com.demonstration.table.coreapi.providers.application
 
 import com.demonstration.table.coreapi.CoreMediator
 import javax.inject.Provider

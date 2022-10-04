@@ -17,7 +17,7 @@
     <dimen name="text_small">10sp</dimen>
 
     <dimen name="margin_giant">64dp</dimen>
-    <dimen name="margin_xhuge">52dp</dimen>
+    <dimen name="margin_xhuge">48dp</dimen>
     <dimen name="margin_huge">36dp</dimen>
     <dimen name="margin_xlarge">32dp</dimen>
     <dimen name="margin_large">24dp</dimen>

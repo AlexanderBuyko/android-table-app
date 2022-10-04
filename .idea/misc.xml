@@ -33,6 +33,8 @@
         <entry key="modules/features/feature_registration/src/main/res/drawable/ic_eye.xml" value="0.173" />
         <entry key="modules/features/feature_registration/src/main/res/drawable/ic_eye_crossed.xml" value="0.173" />
         <entry key="modules/features/feature_registration/src/main/res/layout/fragment_registration.xml" value="0.1" />
+        <entry key="modules/features/feature_signin/src/main/res/layout/fragment_recovery.xml" value="0.2611111111111111" />
+        <entry key="modules/features/feature_signin/src/main/res/layout/fragment_sign_in.xml" value="0.2611111111111111" />
       </map>
     </option>
   </component>

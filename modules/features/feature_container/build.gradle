@@ -42,8 +42,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation(libs.dagger.core)
+    implementation libs.dagger.core
     kapt libs.dagger.compiler
+    implementation libs.bundles.navigation
 
     implementation project(":modules:base:base_ui")
     implementation project(":modules:celebrity:core_api")

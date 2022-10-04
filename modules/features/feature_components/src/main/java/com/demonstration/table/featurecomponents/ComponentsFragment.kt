@@ -2,16 +2,16 @@ package com.demonstration.table.featurecomponents
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.demonstration.table.coreapi.ProvidersHolder
+import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.featurecomponents.databinding.FragmentComponentsBinding
+import com.demostration.table.basetable.base.BaseFragment
 
-class ComponentsFragment : Fragment() {
+class ComponentsFragment : BaseFragment<FragmentComponentsBinding>() {
 
-    companion object {
-        fun newInstance() = ComponentsFragment()
+    override val bindingProvider = { inflater: LayoutInflater, parent: ViewGroup? ->
+        FragmentComponentsBinding.inflate(inflater, parent,false)
     }
 
     private lateinit var viewModel: ComponentsViewModel
@@ -28,14 +28,11 @@ class ComponentsFragment : Fragment() {
 
     private fun initDaggerComponent() {
         ComponentsComponent
-            .create((requireActivity().application as ProvidersHolder).getAggregatingProvider())
+            .create((requireActivity().application as AppProvidersHolder).getAggregatingProvider())
             .inject(this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_components, container, false)
+    companion object {
+        fun newInstance() = ComponentsFragment()
     }
 }
