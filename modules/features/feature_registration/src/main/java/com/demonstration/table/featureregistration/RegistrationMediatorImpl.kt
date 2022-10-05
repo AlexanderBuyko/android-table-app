@@ -15,6 +15,6 @@ class RegistrationMediatorImpl @Inject constructor(
         val request = NavDeepLinkRequest.Builder
             .fromUri("android-app://table.demonstration.com/registration".toUri())
             .build()
-        navController.navigate(request, navOptionsFactory.create())
+        navController.navigate(request, navOptionsFactory.create(R.id.registrationFragment))
     }
 }

@@ -92,7 +92,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
                 }
             }
             vMtvRecovery.setSafeOnClickListener {
-                navController.navigate(R.id.recoveryFragment, null, navOptionsFactory.create())
+                navController.navigate(R.id.recoveryFragment, null, navOptionsFactory.createDefault())
             }
             vMbSignIn.setSafeOnClickListener {
 

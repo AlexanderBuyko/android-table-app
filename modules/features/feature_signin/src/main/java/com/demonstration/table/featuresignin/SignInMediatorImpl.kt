@@ -15,6 +15,6 @@ class SignInMediatorImpl @Inject constructor(
         val request = NavDeepLinkRequest.Builder
             .fromUri("android-app://table.demonstration.com/signin".toUri())
             .build()
-        navController.navigate(request, navOptionsFactory.create())
+        navController.navigate(request, navOptionsFactory.create(R.id.signInFragment))
     }
 }
