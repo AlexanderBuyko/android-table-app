@@ -13,7 +13,7 @@
         android:id="@+id/vTvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="77dp"
         android:text="@string/register_title"
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB"
         app:layout_constraintEnd_toEndOf="parent"

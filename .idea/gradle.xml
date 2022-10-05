@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/modules/features/feature_container" />
             <option value="$PROJECT_DIR$/modules/features/feature_greeting" />
             <option value="$PROJECT_DIR$/modules/features/feature_greetingapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_home" />
             <option value="$PROJECT_DIR$/modules/features/feature_registration" />
             <option value="$PROJECT_DIR$/modules/features/feature_registrationapi" />
             <option value="$PROJECT_DIR$/modules/features/feature_signin" />

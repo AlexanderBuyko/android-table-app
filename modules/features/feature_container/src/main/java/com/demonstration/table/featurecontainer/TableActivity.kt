@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
@@ -17,6 +18,7 @@ import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.coreapi.providers.activity.ActivityAggregatingProvider
@@ -27,6 +29,7 @@ import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
 import com.demonstration.table.featuregreetingapi.GreetingMediator
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
+import com.example.baseui.extentions.hasInBackStack
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -54,9 +57,16 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
         get() = navHostFragment.navController
 
     private val navHostFragment: NavHostFragment
-        get() = supportFragmentManager.findFragmentById(R.id.vFragmentContainer) as NavHostFragment
+        get() = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
-    private val componentContainer by lazy { binding.vFragmentContainer }
+    private val onDestinationChangedListener =
+        NavController.OnDestinationChangedListener { _, _, arguments ->
+            binding.bottomNavigation.isVisible =
+                arguments?.getBoolean("ShowBottomNav", false) == true
+        }
+
+    private val componentContainer by lazy { binding.fragmentContainer }
+    private val bottomNavigation by lazy { binding.bottomNavigation }
     private val curtainLeft by lazy { splashBinding.vIvCurtainLeft }
     private val curtainRight by lazy { splashBinding.vIvCurtainRight }
     private val splashIcon by lazy { splashBinding.vIvSplashIcon }
@@ -91,12 +101,21 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
         initDaggerComponent()
         initNavigationGraph()
         initComponents()
-
-        startGreetingFragment()
+        initBottomNavigation()
 
         handleSplashDuration()
         handleSplashExitAnimation()
         handleSystemInsets()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        navController.addOnDestinationChangedListener(onDestinationChangedListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        navController.removeOnDestinationChangedListener(onDestinationChangedListener)
     }
 
     override fun onDestroy() {
@@ -114,10 +133,6 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
         if (hasFocus) {
             prepareForSplashExitAnimation()
         }
-    }
-
-    private fun startGreetingFragment() {
-        greetingMediator.openGreetingScreen(navController)
     }
 
     private fun initDaggerComponent() {
@@ -148,11 +163,28 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
             .also { splashIcon.setImageDrawable(it) }
     }
 
+    private fun initBottomNavigation() {
+        binding.bottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
+            if (navController.hasInBackStack(item.itemId)) {
+                navController.popBackStack(item.itemId, false)
+            } else {
+                navController.navigate(item.itemId)
+            }
+            true
+        }
+    }
+
     private fun handleSystemInsets() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         ViewCompat.setOnApplyWindowInsetsListener(componentContainer) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = insets.top, bottom = insets.bottom)
+            view.updatePadding(top = insets.top)
+            WindowInsetsCompat.CONSUMED
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNavigation) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(bottom = insets.bottom)
             WindowInsetsCompat.CONSUMED
         }
         ViewCompat.setWindowInsetsAnimationCallback(componentContainer, object :
