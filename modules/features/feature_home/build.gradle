@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.demonstration.featurehome'
+    namespace 'com.demonstration.table.featurehome'
     compileSdk 32
 
     defaultConfig {

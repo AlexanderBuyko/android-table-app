@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/modules/features/feature_home" />
             <option value="$PROJECT_DIR$/modules/features/feature_registration" />
             <option value="$PROJECT_DIR$/modules/features/feature_registrationapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_settings" />
             <option value="$PROJECT_DIR$/modules/features/feature_signin" />
             <option value="$PROJECT_DIR$/modules/features/feature_signinapi" />
           </set>

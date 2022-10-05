@@ -1,4 +1,4 @@
-package com.demonstration.featurehome
+package com.demonstrations.table.featuresettings
 
 import org.junit.Test
 

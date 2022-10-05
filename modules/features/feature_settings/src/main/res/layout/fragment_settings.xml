@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.demonstrations.table.featuresettings.SettingsFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/vMtvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:text="@string/settings_title"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/vMtvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:text="@string/settings_subtitle"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L"
+        android:textColor="?attr/colorControlNormal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vMtvTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/vMtvDarkTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:text="@string/settings_dark_theme_title"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16M"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vMtvSubtitle" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_large"
+        app:layout_constraintBottom_toBottomOf="@id/vMtvDarkTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/vMtvDarkTheme" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/vMtvLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/settings_log_out_title"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16M"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vMtvDarkTheme" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

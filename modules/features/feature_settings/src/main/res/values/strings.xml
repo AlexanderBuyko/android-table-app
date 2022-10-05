@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_subtitle">Lorem ipsum dolor sit</string>
+    <string name="settings_dark_theme_title">Dark Theme</string>
+    <string name="settings_log_out_title">Log Out</string>
+</resources>

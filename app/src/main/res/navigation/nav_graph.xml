@@ -44,9 +44,20 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.demonstration.featurehome.HomeFragment"
+        android:name="com.demonstration.table.featurehome.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+
+        <argument
+            android:name="ShowBottomNav"
+            android:defaultValue="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.demonstrations.table.featuresettings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
 
         <argument
             android:name="ShowBottomNav"
