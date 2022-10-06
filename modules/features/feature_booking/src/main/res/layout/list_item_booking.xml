@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/booking_background"
+    android:backgroundTint="@color/gallery"
+    android:foreground="@drawable/booking_foreground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/room_preview"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/booking_background"
+        android:foreground="@drawable/booking_foreground"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rectangle_69"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:clipToOutline="true" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_large"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16SB"
+        tools:text="Meeting room" />
+
+</LinearLayout>

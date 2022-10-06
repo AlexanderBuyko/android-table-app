@@ -59,5 +59,9 @@ dependencies {
     implementation project(":modules:features:feature_signin")
     implementation project(":modules:features:feature_signinapi")
     implementation project(":modules:features:feature_home")
+    implementation project(":modules:features:feature_homeapi")
     implementation project(":modules:features:feature_settings")
+    implementation project(":modules:features:feature_settingsapi")
+    implementation project(":modules:features:feature_booking")
+    implementation project(":modules:features:feature_bookingapi")
 }

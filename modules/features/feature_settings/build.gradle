@@ -50,6 +50,9 @@ dependencies {
     kapt libs.dagger.compiler
     implementation libs.bundles.navigation
 
+    implementation project(":modules:celebrity:core_api")
     implementation project(":modules:base:base_table")
     implementation project(":modules:base:base_ui")
+    implementation project(":modules:features:feature_settingsapi")
+    implementation project(":modules:features:feature_greetingapi")
 }

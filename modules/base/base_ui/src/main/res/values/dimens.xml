@@ -27,6 +27,8 @@
     <dimen name="margin_teeny">8dp</dimen>
     <dimen name="margin_tiny">4dp</dimen>
 
+    <dimen name="corner_radius_giant">40dp</dimen>
+    <dimen name="corner_radius_huge">24dp</dimen>
     <dimen name="corner_radius_large">16dp</dimen>
     <dimen name="corner_radius_normal">12dp</dimen>
     <dimen name="corner_radius_medium">8dp</dimen>

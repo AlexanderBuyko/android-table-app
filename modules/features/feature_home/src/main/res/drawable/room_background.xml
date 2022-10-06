@@ -3,7 +3,7 @@
     android:color="?attr/rippleColor">
     <item>
         <shape>
-            <corners android:radius="40dp" />
+            <corners android:radius="@dimen/corner_radius_giant" />
         </shape>
     </item>
 </ripple>

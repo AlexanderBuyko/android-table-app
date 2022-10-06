@@ -24,12 +24,14 @@ import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.coreapi.providers.activity.ActivityAggregatingProvider
 import com.demonstration.table.coreapi.providers.application.models.NavigationId
 import com.demonstration.table.corefactory.CelebrityFactory
-import com.demonstration.table.featurecomponentsapi.ComponentsMediator
+import com.demonstration.table.featurebookingapi.BookingMediator
 import com.demonstration.table.featurecontainer.databinding.ActivityTableBinding
 import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
 import com.demonstration.table.featuregreetingapi.GreetingMediator
-import com.demonstration.table.featureregistrationapi.RegistrationMediator
+import com.demonstration.table.featurehomeapi.HomeMediator
+import com.demonstration.table.featuresettingsapi.SettingsMediator
 import com.example.baseui.extentions.hasInBackStack
+import com.example.baseui.extentions.updateBottomPaddingOnApplyWindowInsets
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -39,13 +41,16 @@ import com.example.baseui.R as baseR
 class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     @Inject
-    lateinit var containerMediator: ComponentsMediator
-
-    @Inject
-    lateinit var registrationMediator: RegistrationMediator
-
-    @Inject
     lateinit var greetingMediator: GreetingMediator
+
+    @Inject
+    lateinit var homeMediator: HomeMediator
+
+    @Inject
+    lateinit var bookingMediator: BookingMediator
+
+    @Inject
+    lateinit var settingsMediator: SettingsMediator
 
     @Inject
     lateinit var navigationId: NavigationId
@@ -65,12 +70,12 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
                 arguments?.getBoolean("ShowBottomNav", false) == true
         }
 
-    private val componentContainer by lazy { binding.fragmentContainer }
+    private val rootContainer by lazy { binding.rootContainer }
     private val bottomNavigation by lazy { binding.bottomNavigation }
-    private val curtainLeft by lazy { splashBinding.vIvCurtainLeft }
-    private val curtainRight by lazy { splashBinding.vIvCurtainRight }
-    private val splashIcon by lazy { splashBinding.vIvSplashIcon }
-    private val bullet by lazy { splashBinding.vIvBullet }
+    private val curtainLeft by lazy { splashBinding.leftCurtain }
+    private val curtainRight by lazy { splashBinding.rightCurtain }
+    private val splashIcon by lazy { splashBinding.splashIcon }
+    private val bullet by lazy { splashBinding.bulletIcon }
 
     private var exitAnimationPreparation: Deferred<Unit>? = null
 
@@ -158,8 +163,13 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
     }
 
     private fun initComponents() {
+        bottomNavigation.updateBottomPaddingOnApplyWindowInsets()
         ResourcesCompat.getDrawable(resources, baseR.drawable.ic_table_logo_end, null)
-            ?.apply { splashIcon.setPadding(resources.getDimension(baseR.dimen.splash_icon_padding).toInt()) }
+            ?.apply {
+                splashIcon.setPadding(
+                    resources.getDimension(baseR.dimen.splash_icon_padding).toInt()
+                )
+            }
             .also { splashIcon.setImageDrawable(it) }
     }
 
@@ -169,7 +179,14 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
             if (navController.hasInBackStack(item.itemId)) {
                 navController.popBackStack(item.itemId, false)
             } else {
-                navController.navigate(item.itemId)
+                when (item.itemId) {
+                    R.id.homeFragment ->
+                        homeMediator.openHomeScreen(navController)
+                    R.id.bookingFragment ->
+                        bookingMediator.openBookingScreen(navController)
+                    R.id.settingsFragment ->
+                        settingsMediator.openSettingsScreen(navController)
+                }
             }
             true
         }
@@ -177,29 +194,19 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private fun handleSystemInsets() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        ViewCompat.setOnApplyWindowInsetsListener(componentContainer) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = insets.top)
-            WindowInsetsCompat.CONSUMED
-        }
-        ViewCompat.setOnApplyWindowInsetsListener(bottomNavigation) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(bottom = insets.bottom)
-            WindowInsetsCompat.CONSUMED
-        }
-        ViewCompat.setWindowInsetsAnimationCallback(componentContainer, object :
+        ViewCompat.setWindowInsetsAnimationCallback(rootContainer, object :
             WindowInsetsAnimationCompat.Callback(DISPATCH_MODE_STOP) {
 
             override fun onPrepare(animation: WindowInsetsAnimationCompat) {
                 super.onPrepare(animation)
-                startContainerBottom = componentContainer.bottom.toFloat()
+                startContainerBottom = rootContainer.bottom.toFloat()
             }
 
             override fun onStart(
                 animation: WindowInsetsAnimationCompat,
                 bounds: WindowInsetsAnimationCompat.BoundsCompat
             ): WindowInsetsAnimationCompat.BoundsCompat {
-                endContainerBottom = componentContainer.bottom.toFloat()
+                endContainerBottom = rootContainer.bottom.toFloat()
                 return bounds
             }
 
@@ -212,7 +219,7 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
                 } ?: return insets
 
                 // Offset the view based on the interpolated fraction of the IME animation.
-                componentContainer.translationY =
+                rootContainer.translationY =
                     (startContainerBottom - endContainerBottom) * (1 - imeAnimation.interpolatedFraction)
 
                 return insets
@@ -242,9 +249,19 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
                 lifecycleScope.launch {
                     exitAnimationPreparation?.await()
-                    val slideLeft = ObjectAnimator.ofFloat(curtainLeft, View.TRANSLATION_X, 0f, -curtainLeft.width.toFloat())
+                    val slideLeft = ObjectAnimator.ofFloat(
+                        curtainLeft,
+                        View.TRANSLATION_X,
+                        0f,
+                        -curtainLeft.width.toFloat()
+                    )
                     val alphaLeft = ObjectAnimator.ofFloat(curtainLeft, "alpha", 1f, 0f)
-                    val slideRight = ObjectAnimator.ofFloat(curtainRight, View.TRANSLATION_X, 0f, curtainRight.width.toFloat())
+                    val slideRight = ObjectAnimator.ofFloat(
+                        curtainRight,
+                        View.TRANSLATION_X,
+                        0f,
+                        curtainRight.width.toFloat()
+                    )
                     val alphaRight = ObjectAnimator.ofFloat(curtainRight, "alpha", 1f, 0f)
 
                     val curtainsPullingAnim = AnimatorSet().apply {
@@ -261,7 +278,12 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
                     }
 
                     val bulletFlyingAnim =
-                        ObjectAnimator.ofFloat(bullet, View.TRANSLATION_Y, 0f, componentContainer.height.toFloat()).apply {
+                        ObjectAnimator.ofFloat(
+                            bullet,
+                            View.TRANSLATION_Y,
+                            0f,
+                            rootContainer.height.toFloat()
+                        ).apply {
                             interpolator = DecelerateInterpolator()
                             duration = BULLET_FLYING_ANIMATION_DURATION
 

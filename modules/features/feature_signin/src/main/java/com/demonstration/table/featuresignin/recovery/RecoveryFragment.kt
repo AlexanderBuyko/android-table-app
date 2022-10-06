@@ -1,6 +1,5 @@
 package com.demonstration.table.featuresignin.recovery
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import com.demonstration.table.featuresignin.SignInComponent
 import com.demonstration.table.featuresignin.databinding.FragmentRecoveryBinding
 import com.demostration.table.basetable.base.BaseFragment
 import com.example.baseui.extentions.setSafeOnClickListener
+import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
 import javax.inject.Inject
 
 
@@ -34,10 +34,10 @@ class RecoveryFragment : BaseFragment<FragmentRecoveryBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
-        initDagger()
+        initDaggerComponent()
     }
 
-    private fun initDagger() {
+    private fun initDaggerComponent() {
         SignInComponent
             .create(
                 (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
@@ -57,20 +57,10 @@ class RecoveryFragment : BaseFragment<FragmentRecoveryBinding>() {
 
     private fun setupViews() {
         with(binding) {
-            vMbSignIn.setSafeOnClickListener {
-/*                requireActivity().apply {
-                    val intent = packageManager.getLaunchIntentForPackage(packageName)
-                    val componentName = intent?.component
-                    val mainIntent = Intent.makeRestartActivityTask(componentName)
-                    startActivity(mainIntent)
-                    Runtime.getRuntime().exit(0)
-                }*/
+            title.updateTopMarginOnApplyWindowInsets()
+            signInButton.setSafeOnClickListener {
                 greetingMediator.openGreetingScreen(navController)
             }
         }
-    }
-
-    companion object {
-        val TAG: String = RecoveryFragment::class.java.name
     }
 }

@@ -1,67 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/greeting_nav_graph">
 
-    <fragment
-        android:id="@+id/greetingFragment"
-        android:name="com.demonstration.table.featuregreeting.GreetingFragment"
-        android:label="fragment_greeting"
-        tools:layout="@layout/fragment_greeting">
-
-        <deepLink app:uri="android-app://table.demonstration.com/greeting" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.demonstration.table.featureregistration.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration">
-
-        <deepLink app:uri="android-app://table.demonstration.com/registration" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.demonstration.table.featuresignin.signin.SignInFragment"
-        android:label="SignInFragment"
-        tools:layout="@layout/fragment_sign_in">
-
-        <action
-            android:id="@+id/action_signInFragment_to_recoveryFragment"
-            app:destination="@id/recoveryFragment" />
-
-        <deepLink app:uri="android-app://table.demonstration.com/signin" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/recoveryFragment"
-        android:name="com.demonstration.table.featuresignin.recovery.RecoveryFragment"
-        android:label="RecoveryFragment"
-        tools:layout="@layout/fragment_recovery" />
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.demonstration.table.featurehome.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
-
-        <argument
-            android:name="ShowBottomNav"
-            android:defaultValue="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.demonstrations.table.featuresettings.SettingsFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings">
-
-        <argument
-            android:name="ShowBottomNav"
-            android:defaultValue="true" />
-    </fragment>
+    <include app:graph="@navigation/greeting_nav_graph" />
+    <include app:graph="@navigation/registration_nav_graph" />
+    <include app:graph="@navigation/sign_in_nav_graph" />
+    <include app:graph="@navigation/home_nav_graph" />
+    <include app:graph="@navigation/booking_nav_graph" />
+    <include app:graph="@navigation/settings_nav_graph" />
 
 </navigation>

@@ -13,6 +13,7 @@ import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import com.demonstration.table.featuresigninapi.SignInMediator
 import com.demostration.table.basetable.base.BaseFragment
 import com.example.baseui.extentions.setSafeOnClickListener
+import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
 import javax.inject.Inject
 
 class GreetingFragment : BaseFragment<FragmentGreetingBinding>() {
@@ -34,7 +35,7 @@ class GreetingFragment : BaseFragment<FragmentGreetingBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initDagger()
+        initDaggerComponent()
         initViewModel()
     }
 
@@ -43,7 +44,7 @@ class GreetingFragment : BaseFragment<FragmentGreetingBinding>() {
         setupViews()
     }
 
-    private fun initDagger() {
+    private fun initDaggerComponent() {
         GreetingComponent
             .create(
                 (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
@@ -58,16 +59,13 @@ class GreetingFragment : BaseFragment<FragmentGreetingBinding>() {
 
     private fun setupViews() {
         with(binding) {
-            vMbRegister.setSafeOnClickListener {
+            title.updateTopMarginOnApplyWindowInsets()
+            registerButton.setSafeOnClickListener {
                 registrationMediator.openRegistrationScreen(navController)
             }
-            vMbSignIn.setSafeOnClickListener {
+            signInButton.setSafeOnClickListener {
                 signInMediator.openSignInScreen(navController)
             }
         }
-    }
-
-    companion object {
-        fun newInstance() = GreetingFragment()
     }
 }

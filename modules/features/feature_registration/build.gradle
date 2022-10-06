@@ -54,4 +54,5 @@ dependencies {
     implementation project(":modules:base:base_table")
     implementation project(":modules:features:feature_registrationapi")
     implementation project(":modules:features:feature_signinapi")
+    implementation project(":modules:features:feature_homeapi")
 }

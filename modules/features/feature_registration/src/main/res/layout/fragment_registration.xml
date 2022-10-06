@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lClContainer"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -10,7 +10,7 @@
     tools:context=".RegistrationFragment">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vTvTitle"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="77dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vTvSignature"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
@@ -32,10 +32,10 @@
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vTvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/vEtPhoneNumber"
+        android:id="@+id/phone_number"
         style="@style/Theme.Table.Widget.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,10 +46,10 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vTvSignature" />
+        app:layout_constraintTop_toBottomOf="@id/subtitle" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/vEtEmail"
+        android:id="@+id/email"
         style="@style/Theme.Table.Widget.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,10 +60,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vEtPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@id/phone_number" />
 
     <com.example.baseui.widgets.NoChangingBackgroundTextInputLayout
-        android:id="@+id/lTilPasswordContainer"
+        android:id="@+id/password_container"
         style="@style/Theme.Table.Widget.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,10 +75,10 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vEtEmail">
+        app:layout_constraintTop_toBottomOf="@id/email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/vEtPassword"
+            android:id="@+id/password"
             style="@style/Theme.Table.Widget.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,61 +89,60 @@
     </com.example.baseui.widgets.NoChangingBackgroundTextInputLayout>
 
     <ImageView
-        android:id="@+id/vIvSignUpViaGoogle"
+        android:id="@+id/sign_up_via_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_xlarge"
         android:background="@drawable/bg_sign_up_button"
         android:paddingVertical="@dimen/margin_teeny"
         android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toStartOf="@id/vIvSignUpViaGithub"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_via_git_hub"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/lTilPasswordContainer"
-        app:layout_constraintTop_toBottomOf="@id/lTilPasswordContainer" />
+        app:layout_constraintStart_toStartOf="@id/password_container"
+        app:layout_constraintTop_toBottomOf="@id/password_container" />
 
     <ImageView
-        android:id="@+id/vIvSignUpViaGithub"
+        android:id="@+id/sign_up_via_git_hub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:background="@drawable/bg_sign_up_button"
         android:paddingVertical="@dimen/margin_teeny"
         android:src="@drawable/ic_github"
-        app:layout_constraintBottom_toBottomOf="@id/vIvSignUpViaGoogle"
-        app:layout_constraintEnd_toStartOf="@id/vIvSignUpViaFacebook"
-        app:layout_constraintStart_toEndOf="@id/vIvSignUpViaGoogle"
-        app:layout_constraintTop_toTopOf="@id/vIvSignUpViaGoogle" />
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_via_google"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_via_facebook"
+        app:layout_constraintStart_toEndOf="@id/sign_up_via_google"
+        app:layout_constraintTop_toTopOf="@id/sign_up_via_google" />
 
     <ImageView
-        android:id="@+id/vIvSignUpViaFacebook"
+        android:id="@+id/sign_up_via_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_sign_up_button"
         android:paddingVertical="@dimen/margin_teeny"
         android:src="@drawable/ic_facebook"
-        app:layout_constraintBottom_toBottomOf="@id/vIvSignUpViaGoogle"
-        app:layout_constraintEnd_toEndOf="@id/lTilPasswordContainer"
-        app:layout_constraintStart_toEndOf="@id/vIvSignUpViaGithub"
-        app:layout_constraintTop_toTopOf="@id/vIvSignUpViaGoogle" />
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_via_google"
+        app:layout_constraintEnd_toEndOf="@id/password_container"
+        app:layout_constraintStart_toEndOf="@id/sign_up_via_git_hub"
+        app:layout_constraintTop_toTopOf="@id/sign_up_via_google" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/vMbCreateAccount"
+        android:id="@+id/create_account_button"
         style="@style/Theme.Table.Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_huge"
         android:layout_marginTop="@dimen/margin_xlarge"
         android:text="@string/register_create_button_title"
-        app:layout_constraintTop_toBottomOf="@id/vIvSignUpViaGoogle" />
+        app:layout_constraintTop_toBottomOf="@id/sign_up_via_google" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vTvBottomSignature"
+        android:id="@+id/bottom_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_xlarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vMbCreateAccount"
+        app:layout_constraintTop_toBottomOf="@id/create_account_button"
         tools:text="Already have an account? Log In" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

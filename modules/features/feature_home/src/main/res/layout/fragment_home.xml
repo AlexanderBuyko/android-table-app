@@ -7,7 +7,7 @@
     tools:context="com.demonstration.table.featurehome.HomeFragment">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvTitle"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_large"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvSubtitle"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_large"
@@ -27,10 +27,10 @@
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L"
         android:textColor="?attr/colorControlNormal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vMtvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvMeetingRoom"
+        android:id="@+id/meeting_room"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/margin_teeny"
@@ -42,14 +42,14 @@
         android:padding="@dimen/margin_large"
         android:text="@string/home_meeting_room_title"
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI20SB"
-        app:layout_constraintBottom_toTopOf="@id/vMtvPrivateBooth"
+        app:layout_constraintBottom_toTopOf="@id/private_booth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vMtvSubtitle"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
         app:layout_constraintVertical_weight="0.41" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvPrivateBooth"
+        android:id="@+id/private_booth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin_teeny"
@@ -61,14 +61,14 @@
         android:padding="@dimen/margin_large"
         android:text="@string/home_private_booth_title"
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI20SB"
-        app:layout_constraintBottom_toTopOf="@id/vMtvLounge"
-        app:layout_constraintEnd_toStartOf="@id/vMtvBreakOut"
+        app:layout_constraintBottom_toTopOf="@id/lounge"
+        app:layout_constraintEnd_toStartOf="@id/break_out"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vMtvMeetingRoom"
+        app:layout_constraintTop_toBottomOf="@id/meeting_room"
         app:layout_constraintVertical_weight="0.34" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvBreakOut"
+        android:id="@+id/break_out"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/margin_teeny"
@@ -79,15 +79,15 @@
         android:gravity="end"
         android:padding="@dimen/margin_large"
         android:text="@string/home_break_out_title"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI20SB"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI20M"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/vMtvPrivateBooth"
+        app:layout_constraintBottom_toBottomOf="@id/private_booth"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/vMtvPrivateBooth"
-        app:layout_constraintTop_toTopOf="@id/vMtvPrivateBooth" />
+        app:layout_constraintStart_toEndOf="@id/private_booth"
+        app:layout_constraintTop_toTopOf="@id/private_booth" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvLounge"
+        android:id="@+id/lounge"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/margin_teeny"
@@ -98,11 +98,11 @@
         android:gravity="center"
         android:padding="@dimen/margin_large"
         android:text="@string/home_lounge_title"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI20SB"
+        android:textAppearance="@style/Theme.Ava.TextAppearance.UI20M"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vMtvPrivateBooth"
+        app:layout_constraintTop_toBottomOf="@id/private_booth"
         app:layout_constraintVertical_weight="0.24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

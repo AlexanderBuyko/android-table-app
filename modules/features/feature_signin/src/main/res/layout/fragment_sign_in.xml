@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lLlContainer"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -11,6 +11,7 @@
     tools:context=".signin.SignInFragment">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -27,7 +28,7 @@
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/vEtPhoneNumber"
+        android:id="@+id/phone_number"
         style="@style/Theme.Table.Widget.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
         android:inputType="phone" />
 
     <com.example.baseui.widgets.NoChangingBackgroundTextInputLayout
-        android:id="@+id/lTilPasswordContainer"
+        android:id="@+id/password_container"
         style="@style/Theme.Table.Widget.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +49,7 @@
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/vEtPassword"
+            android:id="@+id/password"
             style="@style/Theme.Table.Widget.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
     </com.example.baseui.widgets.NoChangingBackgroundTextInputLayout>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvRecovery"
+        android:id="@+id/recovery_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -68,7 +69,7 @@
         android:textAppearance="@style/Theme.Ava.TextAppearance.UI14SB" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/vMbSignIn"
+        android:id="@+id/sign_in_button"
         style="@style/Theme.Table.Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,7 +83,7 @@
         android:layout_weight="1" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vMtvRegisterTitle"
+        android:id="@+id/register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

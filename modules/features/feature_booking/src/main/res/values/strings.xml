@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="booking_title">Booking</string>
+    <string name="booking_subtitle">Book your best seat today</string>
+    <string name="booking_empty_list_signature">You don\'t have any\nbookings yet</string>
+    <string name="booking_book_here">Book Here</string>
+</resources>

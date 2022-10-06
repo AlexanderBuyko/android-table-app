@@ -49,7 +49,8 @@ dependencies {
     implementation project(":modules:base:base_ui")
     implementation project(":modules:celebrity:core_api")
     implementation project(":modules:celebrity:core_factory")
-    implementation project(":modules:features:feature_componentsapi")
-    implementation project(":modules:features:feature_registrationapi")
     implementation project(":modules:features:feature_greetingapi")
+    implementation project(":modules:features:feature_homeapi")
+    implementation project(":modules:features:feature_bookingapi")
+    implementation project(":modules:features:feature_settingsapi")
 }
