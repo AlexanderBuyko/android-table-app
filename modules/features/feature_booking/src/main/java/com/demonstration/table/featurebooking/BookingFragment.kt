@@ -52,13 +52,7 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
                 BookingTitle(getString(R.string.booking_title)),
                 BookingSubtitle(getString(R.string.booking_subtitle)),
                 BookingItem("Meeting room"),
-                BookingItem("Break out"),
-                BookingItem("Meeting room"),
-                BookingItem("Break out"),
-                BookingItem("Meeting room"),
-                BookingItem("Break out"),
-                BookingItem("Meeting room"),
-                BookingItem("Break out"),
+                BookingItem("Break out")
                 /*BookingPlaceholder*/
             )
             bookingsAdapter.submitList(listItems)
