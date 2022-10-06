@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.featurehomeapi.HomeMediator
 import com.demonstration.table.featureregistration.databinding.FragmentRegistrationBinding
 import com.demonstration.table.featuresigninapi.SignInMediator
 import com.demostration.table.basetable.base.BaseFragment
@@ -24,6 +25,9 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
 
     @Inject
     lateinit var signInMediator: SignInMediator
+
+    @Inject
+    lateinit var homeMediator: HomeMediator
 
     @Inject
     lateinit var navController: NavController
@@ -61,21 +65,22 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
     @SuppressLint("ClickableViewAccessibility")
     private fun setupViews() {
         with(binding) {
-            lClContainer.setOnClickListener {
+            title.updateTopMarginOnApplyWindowInsets()
+            rootContainer.setOnClickListener {
                 context?.hideKeyboard(it)
-                vEtPhoneNumber.clearFocusIfFocused()
-                vEtEmail.clearFocusIfFocused()
-                vEtPassword.clearFocusIfFocused()
+                phoneNumber.clearFocusIfFocused()
+                email.clearFocusIfFocused()
+                password.clearFocusIfFocused()
             }
 
-            with(lTilPasswordContainer) {
+            with(passwordContainer) {
                 isEndIconVisible = false
                 isCounterEnabled = false
                 val colorInt = context.getColorFromAttr(android.R.attr.colorControlNormal)
                 val colorStateList = ColorStateList.valueOf(colorInt)
                 setEndIconTintList(colorStateList)
             }
-            with(vEtPassword) {
+            with(password) {
                 setOnEditorActionListener { view, actionId, _ ->
                     return@setOnEditorActionListener when (actionId) {
                         EditorInfo.IME_ACTION_DONE -> {
@@ -87,27 +92,27 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>() {
                     }
                 }
                 setOnFocusChangeListener { _, hasFocus ->
-                    lTilPasswordContainer.apply {
+                    passwordContainer.apply {
                         isEndIconVisible = hasFocus
                         isCounterEnabled = hasFocus
                     }
                 }
             }
 
-            vIvSignUpViaGoogle.setSafeOnClickListener {
+            signUpViaGoogle.setSafeOnClickListener {
                 Toast.makeText(context, "Sign up via Google", Toast.LENGTH_SHORT).show()
             }
-            vIvSignUpViaGithub.setSafeOnClickListener {
+            signUpViaGitHub.setSafeOnClickListener {
                 Toast.makeText(context, "Sign up via Github", Toast.LENGTH_SHORT).show()
             }
-            vIvSignUpViaFacebook.setSafeOnClickListener {
+            signUpViaFacebook.setSafeOnClickListener {
                 Toast.makeText(context, "Sign up via Facebook", Toast.LENGTH_SHORT).show()
             }
-            vMbCreateAccount.setSafeOnClickListener {
-                Toast.makeText(context, "Create account clicked", Toast.LENGTH_SHORT).show()
+            createAccountButton.setSafeOnClickListener {
+                homeMediator.openHomeScreen(navController)
             }
 
-            vTvBottomSignature.addSpannableParts(
+            bottomSignature.addSpannableParts(
                 firstSpannablePart(),
                 secondSpannablePart()
             )

@@ -2,6 +2,7 @@ package com.demonstration.table.featuresignin
 
 import com.demonstration.table.coreapi.CoreMediator
 import com.demonstration.table.featuregreetingapi.GreetingMediator
+import com.demonstration.table.featurehomeapi.HomeMediator
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import dagger.Module
 import dagger.Provides
@@ -18,5 +19,10 @@ object SignInNavModule {
     @Provides
     fun provideGreetingMediator(map: Map<Class<out CoreMediator>, @JvmSuppressWildcards Provider<Any>>): GreetingMediator {
         return map[GreetingMediator::class.java]?.get() as GreetingMediator
+    }
+
+    @Provides
+    fun provideHomeMediator(map: Map<Class<out CoreMediator>, @JvmSuppressWildcards Provider<Any>>): HomeMediator {
+        return map[HomeMediator::class.java]?.get() as HomeMediator
     }
 }

@@ -4,8 +4,11 @@ import com.demonstration.table.featureregistration.RegistrationExternalModule
 import com.demonstration.table.featurecomponents.ComponentsExternalModule
 import com.demonstration.table.coreapi.providers.application.AppAggregatingProvider
 import com.demonstration.table.coreapi.providers.application.CoreProvider
+import com.demonstration.table.featurebooking.BookingExternalModule
 import com.demonstration.table.featuregreeting.GreetingExternalModule
+import com.demonstration.table.featurehome.HomeExternalModule
 import com.demonstration.table.featuresignin.SignInExternalModule
+import com.demonstrations.table.featuresettings.SettingsExternalModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,7 +17,11 @@ import javax.inject.Singleton
         ComponentsExternalModule::class,
         RegistrationExternalModule::class,
         GreetingExternalModule::class,
-        SignInExternalModule::class],
+        SignInExternalModule::class,
+        BookingExternalModule::class,
+        SettingsExternalModule::class,
+        HomeExternalModule::class
+    ],
     dependencies = [CoreProvider::class]
 )
 @Singleton

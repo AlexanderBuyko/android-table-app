@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.featurehomeapi.HomeMediator
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import com.demonstration.table.featuresignin.R
 import com.demonstration.table.featuresignin.SignInComponent
@@ -26,6 +27,9 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
     lateinit var registrationMediator: RegistrationMediator
 
     @Inject
+    lateinit var homeMediator: HomeMediator
+
+    @Inject
     lateinit var navController: NavController
 
     @Inject
@@ -39,11 +43,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initDagger()
+        initDaggerComponent()
         initViewModel()
     }
 
-    private fun initDagger() {
+    private fun initDaggerComponent() {
         SignInComponent
             .create(
                 (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
@@ -63,18 +67,19 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
 
     private fun setupViews() {
         with(binding) {
-            lLlContainer.setOnClickListener {
+            title.updateTopMarginOnApplyWindowInsets()
+            rootContainer.setOnClickListener {
                 context?.hideKeyboard(it)
-                vEtPhoneNumber.clearFocusIfFocused()
-                vEtPassword.clearFocusIfFocused()
+                phoneNumber.clearFocusIfFocused()
+                password.clearFocusIfFocused()
             }
-            with(lTilPasswordContainer) {
+            with(passwordContainer) {
                 isEndIconVisible = false
                 val colorInt = context.getColorFromAttr(android.R.attr.colorControlNormal)
                 val colorStateList = ColorStateList.valueOf(colorInt)
                 setEndIconTintList(colorStateList)
             }
-            with(vEtPassword) {
+            with(password) {
                 setOnEditorActionListener { view, actionId, _ ->
                     return@setOnEditorActionListener when (actionId) {
                         EditorInfo.IME_ACTION_DONE -> {
@@ -86,18 +91,18 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
                     }
                 }
                 setOnFocusChangeListener { _, hasFocus ->
-                    lTilPasswordContainer.apply {
+                    passwordContainer.apply {
                         isEndIconVisible = hasFocus
                     }
                 }
             }
-            vMtvRecovery.setSafeOnClickListener {
+            recoveryTitle.setSafeOnClickListener {
                 navController.navigate(R.id.recoveryFragment, null, navOptionsFactory.createDefault())
             }
-            vMbSignIn.setSafeOnClickListener {
-
+            signInButton.setSafeOnClickListener {
+                homeMediator.openHomeScreen(navController)
             }
-            vMtvRegisterTitle.addSpannableParts(
+            registerTitle.addSpannableParts(
                 firstSpannablePart(),
                 secondSpannablePart()
             )

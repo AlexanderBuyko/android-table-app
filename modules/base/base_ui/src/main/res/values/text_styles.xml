@@ -10,9 +10,24 @@
         <item name="android:fontFamily">@font/rational_semi_bold</item>
     </style>
 
+    <style name="Theme.Ava.TextAppearance.UI20SB">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:fontFamily">@font/rational_semi_bold</item>
+    </style>
+
+    <style name="Theme.Ava.TextAppearance.UI20M">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:fontFamily">@font/rational_medium</item>
+    </style>
+
     <style name="Theme.Ava.TextAppearance.UI16L">
         <item name="android:textSize">@dimen/text_xlarge</item>
         <item name="android:fontFamily">@font/rational_light</item>
+    </style>
+
+    <style name="Theme.Ava.TextAppearance.UI16R">
+        <item name="android:textSize">@dimen/text_xlarge</item>
+        <item name="android:fontFamily">@font/rational_regular</item>
     </style>
 
     <style name="Theme.Ava.TextAppearance.UI16M">
