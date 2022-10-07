@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home_title">Seats</string>
-    <string name="home_subtitle">Look for your favorite seat</string>
+    <string name="home_subtitle">Where are you working today?</string>
     <string name="home_meeting_room_title">Meeting room</string>
     <string name="home_private_booth_title">Private\nbooth</string>
     <string name="home_break_out_title">Break-out</string>
-    <string name="home_lounge_title">Lounge</string>
+    <string name="home_open_space_title">Open space</string>
 </resources>

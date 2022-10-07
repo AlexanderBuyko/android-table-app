@@ -112,14 +112,14 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
     private fun firstSpannablePart(): SpannablePart {
         return SpannablePart(
             getString(R.string.sign_in_member_signature),
-            baseR.style.Theme_Ava_TextAppearance_UI14R
+            baseR.style.Theme_Table_TextAppearance_UI14R
         )
     }
 
     private fun secondSpannablePart(): SpannablePart {
         return SpannablePart(
             getString(R.string.sign_in_register_signature),
-            baseR.style.Theme_Ava_TextAppearance_UI14SB
+            baseR.style.Theme_Table_TextAppearance_UI14SB
         ) {
             registrationMediator.openRegistrationScreen(navController)
         }

@@ -4,7 +4,6 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.example.baseui.extentions.dp
 import com.example.baseui.R as baseR
 
 class BookingItemDecorator : ItemDecoration() {
@@ -28,11 +27,11 @@ class BookingItemDecorator : ItemDecoration() {
         val mediumMedium = resources.getDimension(baseR.dimen.margin_medium).toInt()
 
         when (adapter.getItemViewType(position)) {
-            BookingAdapter.BookingViewType.TITLE.ordinal ->
+            R.layout.list_item_title ->
                 outRect.set(largeMedium, largeMedium, largeMedium, 0)
-            BookingAdapter.BookingViewType.SUBTITLE.ordinal ->
+            R.layout.list_item_subtitle ->
                 outRect.set(largeMedium, tinyMedium, largeMedium, teenyMedium)
-            BookingAdapter.BookingViewType.ITEM.ordinal -> {
+            R.layout.list_item_booking -> {
                 outRect.set(largeMedium, mediumMedium, largeMedium, 0)
             }
         }

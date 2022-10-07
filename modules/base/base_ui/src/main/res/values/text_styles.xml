@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Ava.TextAppearance" parent="">
+    <style name="Theme.Table.TextAppearance" parent="">
         <item name="android:textColor">?attr/colorOnBackground</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI30SB">
+    <style name="Theme.Table.TextAppearance.UI30SB">
         <item name="android:textSize">@dimen/text_xxxxlarge</item>
         <item name="android:fontFamily">@font/rational_semi_bold</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI20SB">
+    <style name="Theme.Table.TextAppearance.UI20SB">
         <item name="android:textSize">@dimen/text_20</item>
         <item name="android:fontFamily">@font/rational_semi_bold</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI20M">
+    <style name="Theme.Table.TextAppearance.UI20M">
         <item name="android:textSize">@dimen/text_20</item>
         <item name="android:fontFamily">@font/rational_medium</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI16L">
+    <style name="Theme.Table.TextAppearance.UI16L">
         <item name="android:textSize">@dimen/text_xlarge</item>
         <item name="android:fontFamily">@font/rational_light</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI16R">
+    <style name="Theme.Table.TextAppearance.UI16R">
         <item name="android:textSize">@dimen/text_xlarge</item>
         <item name="android:fontFamily">@font/rational_regular</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI16M">
+    <style name="Theme.Table.TextAppearance.UI16M">
         <item name="android:textSize">@dimen/text_xlarge</item>
         <item name="android:fontFamily">@font/rational_medium</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI16SB">
+    <style name="Theme.Table.TextAppearance.UI16SB">
         <item name="android:textSize">@dimen/text_xlarge</item>
         <item name="android:fontFamily">@font/rational_semi_bold</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI14R">
+    <style name="Theme.Table.TextAppearance.UI14R">
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:fontFamily">@font/rational_regular</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI14SB">
+    <style name="Theme.Table.TextAppearance.UI14SB">
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:fontFamily">@font/rational_semi_bold</item>
     </style>
 
-    <style name="Theme.Ava.TextAppearance.UI12R">
+    <style name="Theme.Table.TextAppearance.UI12R">
         <item name="android:textSize">@dimen/text_normal</item>
         <item name="android:fontFamily">@font/rational_regular</item>
     </style>
@@ -58,7 +58,7 @@
 
     <!-- Custom text appearances -->
 
-    <style name="Theme.Ava.TextAppearance.Button" parent="Theme.Ava.TextAppearance.UI16SB">
+    <style name="Theme.Table.TextAppearance.Button" parent="Theme.Table.TextAppearance.UI16SB">
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 </resources>

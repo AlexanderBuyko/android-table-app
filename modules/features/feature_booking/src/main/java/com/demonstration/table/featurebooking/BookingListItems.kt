@@ -1,5 +1,7 @@
 package com.demonstration.table.featurebooking
 
+import androidx.annotation.DrawableRes
+
 sealed interface BookingListItem
 
 data class BookingTitle(
@@ -13,5 +15,12 @@ data class BookingSubtitle(
 object BookingPlaceholder : BookingListItem
 
 data class BookingItem(
-    val roomName: String
+    val id: String,
+    val roomName: String,
+    @DrawableRes
+    val imageResource: Int,
+    val date: String,
+    val time: String,
+    val peopleAmount: Int,
+    val expanded: Boolean = false
 ) : BookingListItem

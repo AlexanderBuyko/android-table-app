@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_container"
     android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp"
         android:text="@string/recovery_title"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI30SB" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/subtitle"
@@ -27,7 +26,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center"
         android:text="@string/recovery_signature"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16L" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phone_number"

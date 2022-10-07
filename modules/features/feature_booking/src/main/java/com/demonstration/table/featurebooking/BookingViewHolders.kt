@@ -1,11 +1,13 @@
 package com.demonstration.table.featurebooking
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.demonstration.table.featurebooking.databinding.ListItemBookingBinding
-import com.demonstration.table.featurebooking.databinding.ListItemEmptyListPlaceholderBinding
+import com.demonstration.table.featurebooking.databinding.ListItemPlaceholderBinding
 import com.demonstration.table.featurebooking.databinding.ListItemSubtitleBinding
 import com.demonstration.table.featurebooking.databinding.ListItemTitleBinding
+import com.example.baseui.extentions.setSafeOnClickListener
 
 abstract class BaseBookingViewHolder<T : BookingListItem>(itemView: ViewBinding) :
     RecyclerView.ViewHolder(itemView.root) {
@@ -36,7 +38,7 @@ class SubtitleViewHolder(
 }
 
 class PlaceholderViewHolder(
-    binding: ListItemEmptyListPlaceholderBinding
+    binding: ListItemPlaceholderBinding
 ) : BaseBookingViewHolder<BookingPlaceholder>(binding) {
 
     override fun bind(model: BookingPlaceholder) {}
@@ -46,13 +48,41 @@ class BookingItemViewHolder(
     private val binding: ListItemBookingBinding
 ) : BaseBookingViewHolder<BookingItem>(binding) {
 
+    private var model: BookingItem? = null
+
     init {
-        binding.roomPreview.clipToOutline = true
+        with(binding) {
+            roomPreview.clipToOutline = true
+        }
     }
 
     override fun bind(model: BookingItem) {
+        this.model = model
         with(binding) {
             roomName.text = model.roomName
+            roomPreview.setImageResource(model.imageResource)
+            bookingDate.text = model.date
+            bookingTime.text = model.time
+            peopleAmount.text =
+                itemView.resources.getQuantityString(
+                    R.plurals.people_amount,
+                    model.peopleAmount,
+                    model.peopleAmount
+                )
         }
+    }
+
+    fun setClickListener(listener: ClickListener) {
+        binding.roomPreview.setSafeOnClickListener {
+            model?.let {
+                listener.invoke(itemView, it, adapterPosition)
+            }
+        }
+    }
+
+    fun isExpanded() = model?.expanded ?: false
+
+    interface ClickListener {
+        fun invoke(view: View, item: BookingItem, position: Int)
     }
 }
