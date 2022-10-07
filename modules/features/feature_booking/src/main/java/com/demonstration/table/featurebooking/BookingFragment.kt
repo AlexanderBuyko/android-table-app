@@ -16,7 +16,6 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
     private lateinit var viewModel: BookingViewModel
 
     private lateinit var bookingsAdapter: BookingAdapter
-
     override val bindingProvider = { inflater: LayoutInflater, parent: ViewGroup? ->
         FragmentBookingBinding.inflate(inflater, parent, false)
     }
@@ -28,6 +27,21 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
         initAdapter()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding.bookingItems) {
+            updateTopPaddingOnApplyWindowInsets()
+            scrollToPosition(0)
+
+            adapter = bookingsAdapter
+            itemAnimator = BookingItemAnimator()
+            addItemDecoration(BookingItemDecorator())
+
+            val listItems = generateTestList()
+            bookingsAdapter.submitList(listItems)
+        }
+    }
+
     private fun initDaggerComponent() {
         BookingComponent.create(
             (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
@@ -37,30 +51,54 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
         }
     }
 
-    private fun initAdapter() {
-        bookingsAdapter = BookingAdapter()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        with(binding.bookingItems) {
-            updateTopPaddingOnApplyWindowInsets()
-            adapter = bookingsAdapter
-            addItemDecoration(BookingItemDecorator())
-
-            val listItems = listOf(
-                BookingTitle(getString(R.string.booking_title)),
-                BookingSubtitle(getString(R.string.booking_subtitle)),
-                BookingItem("Meeting room"),
-                BookingItem("Break out")
-                /*BookingPlaceholder*/
-            )
-            bookingsAdapter.submitList(listItems)
-            scrollToPosition(0)
-        }
-    }
-
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(BookingViewModel::class.java)
+    }
+
+    private fun initAdapter() {
+        bookingsAdapter = BookingAdapter(bookingItemClickListener)
+    }
+
+    private fun generateTestList() = listOf(
+        BookingTitle(getString(R.string.booking_title)),
+        BookingSubtitle(getString(R.string.booking_subtitle)),
+        BookingItem(
+            id = "1",
+            roomName = "Meeting room",
+            imageResource = R.drawable.ic_meeting_room,
+            date = "October 12, 2022",
+            time = "09:00 - 14:00",
+            peopleAmount = 1
+        ),
+        BookingItem(
+            id = "2",
+            roomName = "Break out",
+            imageResource = R.drawable.ic_break_out,
+            date = "October 12, 2022",
+            time = "09:00 - 14:00",
+            peopleAmount = 2
+        ),
+        BookingItem(
+            id = "3",
+            roomName = "Lounge",
+            imageResource = R.drawable.ic_lounge,
+            date = "October 12, 2022",
+            time = "09:00 - 14:00",
+            peopleAmount = 3
+        )
+        /*BookingPlaceholder*/
+    )
+
+    private val bookingItemClickListener = object : BookingItemViewHolder.ClickListener {
+        override fun invoke(view: View, item: BookingItem, position: Int) {
+            bookingsAdapter.run {
+                currentList
+                    .map {
+                        if (it !is BookingItem || it.id != item.id) return@map it
+                        return@map it.copy(expanded = !it.expanded)
+                    }
+                    .also(this::submitList)
+            }
+        }
     }
 }

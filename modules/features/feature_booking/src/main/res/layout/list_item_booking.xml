@@ -2,31 +2,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/booking_background"
-    android:backgroundTint="@color/gallery"
-    android:foreground="@drawable/booking_foreground"
-    android:orientation="vertical">
+    android:backgroundTint="@color/cod_gray"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/margin_small">
 
     <ImageView
         android:id="@+id/room_preview"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/booking_background"
-        android:foreground="@drawable/booking_foreground"
         android:scaleType="centerCrop"
-        android:src="@drawable/rectangle_69"
         app:layout_constraintTop_toTopOf="parent"
-        tools:clipToOutline="true" />
+        tools:clipToOutline="true"
+        tools:src="@drawable/ic_break_out" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margin_small"
         android:layout_marginStart="@dimen/margin_large"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16SB"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16SB"
+        android:textColor="@color/white"
         tools:text="Meeting room" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expandable_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:visibility="gone"
+        tools:alpha="1"
+        tools:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/booking_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/margin_teeny"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14R"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/booking_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="October 12, 2022" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/booking_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_teeny"
+            android:drawableStart="@drawable/ic_stopwatch"
+            android:drawablePadding="@dimen/margin_teeny"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14R"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/people_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/booking_date"
+            tools:text="09:00 - 14:00" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/people_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_teeny"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="@dimen/margin_teeny"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14R"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/cancellation_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/booking_time"
+            tools:text="4 people" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancellation_button"
+            style="@style/Theme.Table.Widget.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/booking_action_button_height"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/booking_cancellation_button_title"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14SB"
+            app:cornerRadius="@dimen/corner_radius_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edition_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/people_amount" />
+
+        <ImageView
+            android:id="@+id/edition_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/booking_action_button_height"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:background="@drawable/edit_button_background"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_pencil"
+            app:layout_constraintBottom_toBottomOf="@id/cancellation_button"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancellation_button"
+            app:layout_constraintTop_toTopOf="@id/cancellation_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

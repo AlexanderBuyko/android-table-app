@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp"
         android:text="@string/sign_in_title"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI30SB" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/sign_in_signature"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16L" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phone_number"
@@ -66,7 +66,7 @@
         android:layout_gravity="end"
         android:layout_marginEnd="@dimen/margin_huge"
         android:text="@string/sign_in_recovery_title"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI14SB" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI14SB" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_button"

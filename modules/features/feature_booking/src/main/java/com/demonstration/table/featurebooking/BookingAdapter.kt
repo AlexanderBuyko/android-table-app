@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.demonstration.table.featurebooking.databinding.ListItemBookingBinding
-import com.demonstration.table.featurebooking.databinding.ListItemEmptyListPlaceholderBinding
-import com.demonstration.table.featurebooking.databinding.ListItemSubtitleBinding
-import com.demonstration.table.featurebooking.databinding.ListItemTitleBinding
+import com.demonstration.table.featurebooking.databinding.*
 
-class BookingAdapter :
-    ListAdapter<BookingListItem, BaseBookingViewHolder<out BookingListItem>>(itemCallback) {
+class BookingAdapter(
+    private val clickListener: BookingItemViewHolder.ClickListener
+) : ListAdapter<BookingListItem, BaseBookingViewHolder<out BookingListItem>>(itemCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -18,22 +16,22 @@ class BookingAdapter :
     ): BaseBookingViewHolder<out BookingListItem> {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            BookingViewType.TITLE.ordinal -> {
+            R.layout.list_item_title -> {
                 val binding: ListItemTitleBinding =
                     ListItemTitleBinding.inflate(inflater, parent, false)
                 TitleViewHolder(binding)
             }
-            BookingViewType.SUBTITLE.ordinal -> {
+            R.layout.list_item_subtitle -> {
                 val binding: ListItemSubtitleBinding =
                     ListItemSubtitleBinding.inflate(inflater, parent, false)
                 SubtitleViewHolder(binding)
             }
-            BookingViewType.PLACEHOLDER.ordinal -> {
-                val binding: ListItemEmptyListPlaceholderBinding =
-                    ListItemEmptyListPlaceholderBinding.inflate(inflater, parent, false)
+            R.layout.list_item_placeholder -> {
+                val binding: ListItemPlaceholderBinding =
+                    ListItemPlaceholderBinding.inflate(inflater, parent, false)
                 PlaceholderViewHolder(binding)
             }
-            BookingViewType.ITEM.ordinal -> {
+            R.layout.list_item_booking -> {
                 val binding: ListItemBookingBinding =
                     ListItemBookingBinding.inflate(inflater, parent, false)
                 BookingItemViewHolder(binding)
@@ -47,8 +45,12 @@ class BookingAdapter :
         position: Int
     ) {
         when (val item = getItem(position)) {
-            is BookingItem ->
-                (holder as BookingItemViewHolder).bind(item)
+            is BookingItem -> {
+                (holder as BookingItemViewHolder).apply {
+                    bind(item)
+                    setClickListener(clickListener)
+                }
+            }
             is BookingPlaceholder ->
                 (holder as PlaceholderViewHolder).bind(item)
             is BookingSubtitle ->
@@ -60,15 +62,11 @@ class BookingAdapter :
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is BookingTitle -> BookingViewType.TITLE.ordinal
-            is BookingSubtitle -> BookingViewType.SUBTITLE.ordinal
-            is BookingPlaceholder -> BookingViewType.PLACEHOLDER.ordinal
-            is BookingItem -> BookingViewType.ITEM.ordinal
+            is BookingTitle -> R.layout.list_item_title
+            is BookingSubtitle -> R.layout.list_item_subtitle
+            is BookingPlaceholder -> R.layout.list_item_placeholder
+            is BookingItem -> R.layout.list_item_booking
         }
-    }
-
-    enum class BookingViewType {
-        TITLE, SUBTITLE, PLACEHOLDER, ITEM
     }
 
     companion object {
@@ -76,7 +74,13 @@ class BookingAdapter :
             override fun areItemsTheSame(
                 oldItem: BookingListItem,
                 newItem: BookingListItem
-            ): Boolean = oldItem == newItem
+            ): Boolean {
+                return if (oldItem is BookingItem && newItem is BookingItem) {
+                    oldItem.id == newItem.id
+                } else {
+                    oldItem == newItem
+                }
+            }
 
             override fun areContentsTheSame(
                 oldItem: BookingListItem,

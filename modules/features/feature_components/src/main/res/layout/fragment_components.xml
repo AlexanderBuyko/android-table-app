@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/margin_giant"
         android:gravity="center_horizontal"
         android:text="Hello Again!"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI30SB" />
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI30SB" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center_horizontal"
         android:text="Welcome back you’ve been missed!"
-        android:textAppearance="@style/Theme.Ava.TextAppearance.UI16L"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16L"
         android:textColor="@color/dove_gray" />
 
     <com.google.android.material.textfield.TextInputEditText
