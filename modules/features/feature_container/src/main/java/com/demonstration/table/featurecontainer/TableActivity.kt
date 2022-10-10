@@ -1,7 +1,5 @@
 package com.demonstration.table.featurecontainer
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
@@ -9,10 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
@@ -66,16 +61,20 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private val onDestinationChangedListener =
         NavController.OnDestinationChangedListener { _, _, arguments ->
-            binding.bottomNavigation.isVisible =
-                arguments?.getBoolean("ShowBottomNav", false) == true
+            val animateOpening = arguments?.getBoolean("ShowBottomNav", false) == true
+            val navigationView = binding.bottomNavigation
+            val changeVisibility = navigationView.isVisible != animateOpening
+
+            if (changeVisibility) {
+                BottomNavigationViewAnimator.Builder()
+                    .navigationView(navigationView)
+                    .build()
+                    .apply { animate(animateOpening) }
+            }
         }
 
     private val rootContainer by lazy { binding.rootContainer }
     private val bottomNavigation by lazy { binding.bottomNavigation }
-    private val curtainLeft by lazy { splashBinding.leftCurtain }
-    private val curtainRight by lazy { splashBinding.rightCurtain }
-    private val splashIcon by lazy { splashBinding.splashIcon }
-    private val bullet by lazy { splashBinding.bulletIcon }
 
     private var exitAnimationPreparation: Deferred<Unit>? = null
 
@@ -153,12 +152,14 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private fun prepareForSplashExitAnimation() {
         exitAnimationPreparation = lifecycleScope.async {
-            val bitmap = splashIcon.drawToBitmap()
-            val leftBitmapPart = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width / 2, bitmap.height)
-            val rightBitmapPart =
-                Bitmap.createBitmap(bitmap, bitmap.width / 2, 0, bitmap.width / 2, bitmap.height)
-            curtainLeft.setImageBitmap(leftBitmapPart)
-            curtainRight.setImageBitmap(rightBitmapPart)
+            with(splashBinding) {
+                val bitmap = splashIcon.drawToBitmap()
+                val leftBitmapPart = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width / 2, bitmap.height)
+                val rightBitmapPart =
+                    Bitmap.createBitmap(bitmap, bitmap.width / 2, 0, bitmap.width / 2, bitmap.height)
+                leftCurtain.setImageBitmap(leftBitmapPart)
+                rightCurtain.setImageBitmap(rightBitmapPart)
+            }
         }
     }
 
@@ -166,11 +167,11 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
         bottomNavigation.updateBottomPaddingOnApplyWindowInsets()
         ResourcesCompat.getDrawable(resources, baseR.drawable.ic_table_logo_end, null)
             ?.apply {
-                splashIcon.setPadding(
+                splashBinding.splashIcon.setPadding(
                     resources.getDimension(baseR.dimen.splash_icon_padding).toInt()
                 )
             }
-            .also { splashIcon.setImageDrawable(it) }
+            .also { splashBinding.splashIcon.setImageDrawable(it) }
     }
 
     private fun initBottomNavigation() {
@@ -245,64 +246,30 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
     }
 
     private fun handleSplashExitAnimation() {
+        val animator = SplashScreenAnimator.Builder()
+            .splashBinding(splashBinding)
+            .build()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
                 lifecycleScope.launch {
                     exitAnimationPreparation?.await()
-                    val slideLeft = ObjectAnimator.ofFloat(
-                        curtainLeft,
-                        View.TRANSLATION_X,
-                        0f,
-                        -curtainLeft.width.toFloat()
+                    animator.animate(
+                        splashScreenView = splashScreenView,
+                        containerHeight = rootContainer.height.toFloat()
                     )
-                    val alphaLeft = ObjectAnimator.ofFloat(curtainLeft, "alpha", 1f, 0f)
-                    val slideRight = ObjectAnimator.ofFloat(
-                        curtainRight,
-                        View.TRANSLATION_X,
-                        0f,
-                        curtainRight.width.toFloat()
-                    )
-                    val alphaRight = ObjectAnimator.ofFloat(curtainRight, "alpha", 1f, 0f)
-
-                    val curtainsPullingAnim = AnimatorSet().apply {
-                        playTogether(slideLeft, alphaLeft, slideRight, alphaRight)
-                        interpolator = DecelerateInterpolator()
-                        duration = CURTAINS_PULLING_ANIMATION_DURATION
-                        startDelay = BULLET_FLYING_ANIMATION_DURATION / 2
-
-                        doOnStart { splashIcon.visibility = View.GONE }
-                        doOnEnd {
-                            curtainLeft.visibility = View.GONE
-                            curtainRight.visibility = View.GONE
-                        }
-                    }
-
-                    val bulletFlyingAnim =
-                        ObjectAnimator.ofFloat(
-                            bullet,
-                            View.TRANSLATION_Y,
-                            0f,
-                            rootContainer.height.toFloat()
-                        ).apply {
-                            interpolator = DecelerateInterpolator()
-                            duration = BULLET_FLYING_ANIMATION_DURATION
-
-                            doOnEnd { bullet.visibility = View.VISIBLE }
-                        }
-
-                    AnimatorSet().apply {
-                        playTogether(bulletFlyingAnim, curtainsPullingAnim)
-                        doOnStart { splashScreenView.remove() }
-                        start()
-                    }
                 }
+            }
+        } else {
+            with(splashBinding) {
+                leftCurtain.isVisible = false
+                rightCurtain.isVisible = false
+                splashIcon.isVisible = false
+                bulletIcon.isVisible = false
             }
         }
     }
 
     companion object {
-        private const val CURTAINS_PULLING_ANIMATION_DURATION = 1000L
-        private const val BULLET_FLYING_ANIMATION_DURATION = 500L
         private const val MINIMUM_SPLASH_ANIMATION_DURATION = 1200
 
         private var activityAggregatingProvider: ActivityAggregatingProvider? = null
