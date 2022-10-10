@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="@dimen/margin_teeny"
-            android:text="26/06/2021"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date_title" />
@@ -83,10 +82,10 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="@dimen/margin_teeny"
             android:layout_marginEnd="34dp"
-            android:text="9:00"
             app:layout_constraintEnd_toStartOf="@id/end_time_field"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_time_title" />
+            app:layout_constraintTop_toBottomOf="@id/start_time_title"
+            tools:text="9:00" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/end_time_field"
@@ -94,11 +93,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="10:00"
             app:layout_constraintBottom_toBottomOf="@id/start_time_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/start_time_field"
-            app:layout_constraintTop_toTopOf="@id/start_time_field" />
+            app:layout_constraintTop_toTopOf="@id/start_time_field"
+            tools:text="10:00" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -118,10 +117,10 @@
             android:drawableStart="@drawable/ic_sofa"
             android:drawablePadding="@dimen/margin_teeny"
             android:gravity="center_vertical"
-            android:text="9 places"
             android:textAppearance="@style/Theme.Table.TextAppearance.UI14R"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_time_field" />
+            app:layout_constraintTop_toBottomOf="@id/start_time_field"
+            tools:text="9 places" />
 
         <com.google.android.material.button.MaterialButton
             style="@style/Theme.Table.Widget.Button"

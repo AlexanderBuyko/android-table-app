@@ -16,15 +16,34 @@
             android:defaultValue="true" />
 
         <action
-            android:id="@+id/action_homeFragment_to_reservationFragmentDialog"
-            app:destination="@id/reservationFragmentDialog" />
+            android:id="@+id/to_reservationFragmentDialog"
+            app:destination="@id/reservationDialogFragment" />
 
         <deepLink app:uri="android-app://table.demonstration.com/home" />
     </fragment>
 
     <dialog
-        android:id="@+id/reservationFragmentDialog"
-        android:name="com.demonstration.table.featurehome.ui.reservation.ReservationBottomSheetDialogFragment"
+        android:id="@+id/reservationDialogFragment"
+        android:name="com.demonstration.table.featurehome.ui.reservation.ReservationDialogFragment"
         android:label="ReservationDialogFragment"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation">
+
+        <action
+            android:id="@+id/to_datePickerFragment"
+            app:destination="@id/datePickerFragment" />
+
+        <action
+            android:id="@+id/to_timePickerFragment"
+            app:destination="@id/timePickerFragment" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.demostration.table.basetable.dialogs.DatePickerFragment"
+        android:label="DatePickerDialog" />
+
+    <dialog
+        android:id="@+id/timePickerFragment"
+        android:name="com.demostration.table.basetable.dialogs.TimePickerFragment"
+        android:label="TimePickerDialog" />
 </navigation>

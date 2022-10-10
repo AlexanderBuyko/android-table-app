@@ -49,7 +49,6 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="android:backgroundDimEnabled">true</item>
 
-        <!-- Copy of colors from @style/Theme.Ava -->
         <item name="colorSurface">@color/wild_sand</item>
         <item name="colorError">@color/coral_red</item>
         <item name="colorBackground">@color/white</item>

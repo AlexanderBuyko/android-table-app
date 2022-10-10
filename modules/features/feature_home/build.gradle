@@ -2,15 +2,16 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'com.demonstration.table.featurehome'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 23
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,6 +50,7 @@ dependencies {
     implementation libs.dagger.core
     kapt libs.dagger.compiler
     implementation libs.bundles.navigation
+    implementation libs.date
 
     implementation project(":modules:celebrity:core_api")
     implementation project(":modules:base:base_table")

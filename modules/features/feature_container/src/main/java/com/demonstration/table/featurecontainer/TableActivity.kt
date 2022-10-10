@@ -62,16 +62,16 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private val onDestinationChangedListener =
         NavController.OnDestinationChangedListener { _, navDestination, arguments ->
-            val animateOpening = arguments?.getBoolean("ShowBottomNav", false) == true ||
+            val expectedVisibility = arguments?.getBoolean("ShowBottomNav", false) == true ||
                     navDestination is DialogFragmentNavigator.Destination
             val navigationView = binding.bottomNavigation
-            val changeVisibility = navigationView.isVisible != animateOpening
+            val changeVisibility = navigationView.isVisible != expectedVisibility
 
             if (changeVisibility) {
                 BottomNavigationViewAnimator.Builder()
                     .navigationView(navigationView)
                     .build()
-                    .apply { animate(animateOpening) }
+                    .apply { animate(expectedVisibility) }
             }
         }
 

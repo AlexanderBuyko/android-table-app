@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             title.updateTopMarginOnApplyWindowInsets()
             meetingRoom.setSafeOnClickListener {
                 navController.navigate(
-                    resId = R.id.action_homeFragment_to_reservationFragmentDialog,
+                    resId = R.id.to_reservationFragmentDialog,
                     args = null,
                     navOptions = navOptionsFactory.createDefault()
                 )

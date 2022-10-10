@@ -2,14 +2,18 @@
 coroutines =  '1.6.1'
 dagger = '2.43.2'
 navigation = '2.5.2'
+date = '1.4.1'
 
 [libraries]
 dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+date = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "date" }
 
 [bundles]
 navigation = ["navigation-fragment", "navigation-ui"]
