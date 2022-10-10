@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.demonstration.table.featurehome.HomeFragment"
+        android:name="com.demonstration.table.featurehome.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
 
@@ -15,6 +15,16 @@
             android:name="ShowBottomNav"
             android:defaultValue="true" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_reservationFragmentDialog"
+            app:destination="@id/reservationFragmentDialog" />
+
         <deepLink app:uri="android-app://table.demonstration.com/home" />
     </fragment>
+
+    <dialog
+        android:id="@+id/reservationFragmentDialog"
+        android:name="com.demonstration.table.featurehome.ui.reservation.ReservationBottomSheetDialogFragment"
+        android:label="ReservationDialogFragment"
+        tools:layout="@layout/fragment_reservation" />
 </navigation>

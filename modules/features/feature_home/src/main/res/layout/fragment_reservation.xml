@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="44dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/room_preview"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/room_icon_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_meeting_room"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:clipToOutline="true" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI20SB"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/room_preview"
+            tools:text="Meeting room" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/reservation_date_title"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14M"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/room_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date_field"
+            style="@style/Theme.Table.TextView.DateField.Day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="@dimen/margin_teeny"
+            android:text="26/06/2021"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/start_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/reservation_start_time_title"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14M"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date_field" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/end_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reservation_end_time_title"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14M"
+            app:layout_constraintBottom_toBottomOf="@id/start_time_title"
+            app:layout_constraintStart_toStartOf="@id/end_time_field"
+            app:layout_constraintTop_toTopOf="@id/start_time_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/start_time_field"
+            style="@style/Theme.Table.TextView.DateField.Hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/margin_teeny"
+            android:layout_marginEnd="34dp"
+            android:text="9:00"
+            app:layout_constraintEnd_toStartOf="@id/end_time_field"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/start_time_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/end_time_field"
+            style="@style/Theme.Table.TextView.DateField.Hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="10:00"
+            app:layout_constraintBottom_toBottomOf="@id/start_time_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/start_time_field"
+            app:layout_constraintTop_toTopOf="@id/start_time_field" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="@id/end_time_field"
+            app:layout_constraintEnd_toStartOf="@id/end_time_field"
+            app:layout_constraintStart_toEndOf="@id/start_time_field"
+            app:layout_constraintTop_toTopOf="@id/start_time_field" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/available_places_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:drawableStart="@drawable/ic_sofa"
+            android:drawablePadding="@dimen/margin_teeny"
+            android:gravity="center_vertical"
+            android:text="9 places"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI14R"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/start_time_field" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Theme.Table.Widget.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_huge"
+            android:layout_marginTop="@dimen/margin_giant"
+            android:text="@string/reservation_book_button_title"
+            app:layout_constraintTop_toBottomOf="@id/available_places_count" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

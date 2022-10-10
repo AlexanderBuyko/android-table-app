@@ -1,4 +1,4 @@
-package com.demonstration.table.featurehome
+package com.demonstration.table.featurehome.ui.home
 
 import androidx.lifecycle.ViewModel
 

@@ -12,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
@@ -60,8 +61,9 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
         get() = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
     private val onDestinationChangedListener =
-        NavController.OnDestinationChangedListener { _, _, arguments ->
-            val animateOpening = arguments?.getBoolean("ShowBottomNav", false) == true
+        NavController.OnDestinationChangedListener { _, navDestination, arguments ->
+            val animateOpening = arguments?.getBoolean("ShowBottomNav", false) == true ||
+                    navDestination is DialogFragmentNavigator.Destination
             val navigationView = binding.bottomNavigation
             val changeVisibility = navigationView.isVisible != animateOpening
 

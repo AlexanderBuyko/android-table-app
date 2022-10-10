@@ -45,6 +45,11 @@
         <item name="android:fontFamily">@font/rational_regular</item>
     </style>
 
+    <style name="Theme.Table.TextAppearance.UI14M">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:fontFamily">@font/rational_medium</item>
+    </style>
+
     <style name="Theme.Table.TextAppearance.UI14SB">
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:fontFamily">@font/rational_semi_bold</item>
