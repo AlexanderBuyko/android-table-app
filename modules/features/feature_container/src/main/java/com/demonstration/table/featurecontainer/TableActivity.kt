@@ -1,13 +1,16 @@
 package com.demonstration.table.featurecontainer
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.View.MeasureSpec
 import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
@@ -66,8 +69,54 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private val onDestinationChangedListener =
         NavController.OnDestinationChangedListener { _, _, arguments ->
-            binding.bottomNavigation.isVisible =
-                arguments?.getBoolean("ShowBottomNav", false) == true
+            val shouldBeVisible = arguments?.getBoolean("ShowBottomNav", false) == true
+            val navigationView = binding.bottomNavigation
+            val rootContainer = binding.rootContainer
+            val changeVisibility = navigationView.isVisible != shouldBeVisible
+
+            if (changeVisibility) {
+                val toHeight: Int
+                val heightAnim: ValueAnimator
+                val alphaAnim: ObjectAnimator
+                if (shouldBeVisible) {
+                    navigationView.isVisible = true
+
+                    val widthSpec = MeasureSpec.makeMeasureSpec(rootContainer.width, MeasureSpec.EXACTLY)
+                    // Need to set any large size, because it will be replaced with the min calculated height
+                    val heightSpec = MeasureSpec.makeMeasureSpec(1000, MeasureSpec.UNSPECIFIED)
+                    navigationView.measure(widthSpec, heightSpec)
+                    toHeight = navigationView.measuredHeight
+
+                    alphaAnim = ObjectAnimator.ofFloat(navigationView, "alpha", 1f)
+                } else {
+                    toHeight = 0
+                    alphaAnim = ObjectAnimator.ofFloat(navigationView, "alpha", 0f)
+                }
+                heightAnim = ValueAnimator.ofInt(navigationView.height, toHeight)
+                heightAnim.addUpdateListener { animation ->
+                    navigationView.layoutParams.height = animation.animatedValue as Int
+                    navigationView.requestLayout()
+                }
+                val animSet = AnimatorSet()
+                if (shouldBeVisible) {
+                    animSet.playSequentially(heightAnim, alphaAnim)
+                } else {
+                    animSet.playSequentially(alphaAnim, heightAnim)
+                }
+                animSet.addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animation: Animator) {}
+                    override fun onAnimationEnd(animation: Animator) {
+                        if (!shouldBeVisible) {
+                            navigationView.isVisible = false
+                        }
+                    }
+
+                    override fun onAnimationCancel(animation: Animator) {}
+
+                    override fun onAnimationRepeat(animation: Animator) {}
+                })
+                animSet.start()
+            }
         }
 
     private val rootContainer by lazy { binding.rootContainer }
