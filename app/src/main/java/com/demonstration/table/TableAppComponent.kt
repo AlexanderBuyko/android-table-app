@@ -6,7 +6,7 @@ import com.demonstration.table.coreapi.providers.application.AppAggregatingProvi
 import com.demonstration.table.coreapi.providers.application.CoreProvider
 import com.demonstration.table.featurebooking.BookingExternalModule
 import com.demonstration.table.featuregreeting.GreetingExternalModule
-import com.demonstration.table.featurehome.HomeExternalModule
+import com.demonstration.table.featurehome.dagger.HomeExternalModule
 import com.demonstration.table.featuresignin.SignInExternalModule
 import com.demonstrations.table.featuresettings.SettingsExternalModule
 import dagger.Component

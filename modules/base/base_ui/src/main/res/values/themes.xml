@@ -33,6 +33,32 @@
         <!--Splash-->
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/ic_table_logo_animated</item>
         <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1500</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Table.BottomSheet</item>
+    </style>
+
+    <style name="Theme.Table.BottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Theme.Table.Widget.BottomSheet</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">?attr/colorBackground</item>
+        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">
+            ?attr/colorBackground
+        </item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <item name="colorSurface">@color/wild_sand</item>
+        <item name="colorError">@color/coral_red</item>
+        <item name="colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/night_rider</item>
+        <item name="colorPrimary">@color/night_rider</item>
+        <item name="colorPrimaryDisabled">@color/dove_gray</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/wild_sand</item>
+        <item name="colorControlNormal">@color/dove_gray</item>
+        <item name="rippleColor">@color/cod_gray_10</item>
     </style>
 
 </resources>

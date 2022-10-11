@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.demonstration.table.featurehome.HomeFragment"
+        android:name="com.demonstration.table.featurehome.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
 
@@ -15,6 +15,35 @@
             android:name="ShowBottomNav"
             android:defaultValue="true" />
 
+        <action
+            android:id="@+id/to_reservationFragmentDialog"
+            app:destination="@id/reservationDialogFragment" />
+
         <deepLink app:uri="android-app://table.demonstration.com/home" />
     </fragment>
+
+    <dialog
+        android:id="@+id/reservationDialogFragment"
+        android:name="com.demonstration.table.featurehome.ui.reservation.ReservationDialogFragment"
+        android:label="ReservationDialogFragment"
+        tools:layout="@layout/fragment_reservation">
+
+        <action
+            android:id="@+id/to_datePickerFragment"
+            app:destination="@id/datePickerFragment" />
+
+        <action
+            android:id="@+id/to_timePickerFragment"
+            app:destination="@id/timePickerFragment" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.demostration.table.basetable.dialogs.DatePickerFragment"
+        android:label="DatePickerDialog" />
+
+    <dialog
+        android:id="@+id/timePickerFragment"
+        android:name="com.demostration.table.basetable.dialogs.TimePickerFragment"
+        android:label="TimePickerDialog" />
 </navigation>

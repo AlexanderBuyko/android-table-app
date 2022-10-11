@@ -80,8 +80,8 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
         ),
         BookingItem(
             id = "3",
-            roomName = "Lounge",
-            imageResource = R.drawable.ic_lounge,
+            roomName = "Open Space",
+            imageResource = R.drawable.ic_open_space,
             date = "October 12, 2022",
             time = "09:00 - 14:00",
             peopleAmount = 3

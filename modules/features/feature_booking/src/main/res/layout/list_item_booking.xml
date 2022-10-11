@@ -18,7 +18,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         tools:clipToOutline="true"
-        tools:src="@drawable/ic_break_out" />
+        tools:src="@drawable/ic_meeting_room" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/room_name"
