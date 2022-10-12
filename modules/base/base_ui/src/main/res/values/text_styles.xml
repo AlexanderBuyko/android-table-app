@@ -60,6 +60,36 @@
         <item name="android:fontFamily">@font/rational_regular</item>
     </style>
 
+    <style name="Theme.Table.TextAppearance.UI12M">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:fontFamily">@font/rational_medium</item>
+    </style>
+
+    <style name="Theme.Table.TextAppearance.UI12SB">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:fontFamily">@font/rational_semi_bold</item>
+    </style>
+
+    <style name="Theme.Table.TextAppearance.UI12B">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:fontFamily">@font/rational_bold</item>
+    </style>
+
+    <style name="Theme.Table.TextAppearance.UI13M">
+        <item name="android:textSize">@dimen/text_13</item>
+        <item name="android:fontFamily">@font/rational_medium</item>
+    </style>
+
+    <style name="Theme.Table.TextAppearance.UI13SB">
+        <item name="android:textSize">@dimen/text_13</item>
+        <item name="android:fontFamily">@font/rational_semi_bold</item>
+    </style>
+
+    <style name="Theme.Table.TextAppearance.UI13B">
+        <item name="android:textSize">@dimen/text_13</item>
+        <item name="android:fontFamily">@font/rational_bold</item>
+    </style>
+
 
     <!-- Custom text appearances -->
 

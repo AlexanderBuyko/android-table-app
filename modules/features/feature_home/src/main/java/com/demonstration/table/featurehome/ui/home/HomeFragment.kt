@@ -4,17 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
+import com.demonstration.table.coreapi.models.Config
 import com.demonstration.table.featurehome.R
 import com.demonstration.table.featurehome.dagger.HomeComponent
 import com.demonstration.table.featurehome.databinding.FragmentHomeBinding
 import com.demostration.table.basetable.base.BaseFragment
+import com.demostration.table.basetable.dialogs.CapableOfCompleting
+import com.example.baseui.extentions.navigateWith
 import com.example.baseui.extentions.setSafeOnClickListener
 import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
 import com.example.baseui.factories.NavOptionsFactory
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -37,26 +43,40 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         initViewModel()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            title.updateTopMarginOnApplyWindowInsets()
+            meetingRoom.setSafeOnClickListener {
+                HomeFragmentDirections.toReservationFragmentDialog()
+                    .navigateWith(navController, navOptionsFactory.createDefault())
+            }
+            openSpace.setSafeOnClickListener {
+                val config = Config.Builder()
+                    .cancelable(false)
+                    .message("Loading")
+                    .onConfirmation { navController.navigateUp() }
+                    .build()
+                navController.navigate(R.id.to_progressFragment, bundleOf("config" to config))
+                lifecycleScope.launchWhenResumed {
+                    delay(1000)
+                    val capableOfCompleting = parentFragmentManager
+                        .fragments
+                        .filterIsInstance<CapableOfCompleting>()
+                        .firstOrNull()
+                    capableOfCompleting
+                        ?.updateDialogMessage("You have reserved you seats successfully! Thank you for choosing our service ;)")
+                }
+            }
+        }
+    }
+
     private fun initDaggerComponent() {
         HomeComponent.create(
             (requireActivity().application as AppProvidersHolder).getAggregatingProvider(),
             (requireActivity() as ActivityProvidersHolder).getActivityAggregatingProvider()
         ).also {
             it.inject(this)
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            title.updateTopMarginOnApplyWindowInsets()
-            meetingRoom.setSafeOnClickListener {
-                navController.navigate(
-                    resId = R.id.to_reservationFragmentDialog,
-                    args = null,
-                    navOptions = navOptionsFactory.createDefault()
-                )
-            }
         }
     }
 

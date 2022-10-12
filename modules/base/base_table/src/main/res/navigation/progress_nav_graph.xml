@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progress_nav_graph"
+    app:startDestination="@id/progressFragment">
+
+    <dialog
+        android:id="@+id/progressFragment"
+        android:name="com.demostration.table.basetable.dialogs.ProgressFragment"
+        android:label="ProgressFragment"
+        tools:layout="@layout/dialog_progress">
+
+        <argument
+            android:name="config"
+            app:argType="com.demonstration.table.coreapi.models.Config"
+            app:nullable="false" />
+    </dialog>
+</navigation>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/progress_dialog_background"
+    android:backgroundTint="?attr/colorOnPrimary"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/progress_background"
+        android:backgroundTint="?attr/colorPrimary"
+        android:indeterminateTint="?attr/colorOnPrimary"
+        android:paddingVertical="@dimen/margin_xlarge" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:lineSpacingExtra="2sp"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI16R"
+            app:layout_constraintBottom_toTopOf="@id/confirmation_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="You have reserved you seats successfully! Thank you for choosing our service ;)" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/confirmation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_teeny"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/margin_small"
+            android:paddingVertical="@dimen/margin_small"
+            android:text="@android:string/ok"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI13B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/message"
+            app:layout_constraintTop_toBottomOf="@id/message" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cancellation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/margin_small"
+            android:paddingVertical="@dimen/margin_small"
+            android:text="@android:string/cancel"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Theme.Table.TextAppearance.UI13M"
+            android:textColor="@color/juniper"
+            app:layout_constraintBottom_toBottomOf="@id/confirmation_button"
+            app:layout_constraintEnd_toStartOf="@id/confirmation_button"
+            app:layout_constraintTop_toTopOf="@id/confirmation_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
