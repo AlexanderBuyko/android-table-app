@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Home Screen  -->
+    <string name="home_title">Seats</string>
+    <string name="home_subtitle">Where are you working today?</string>
+    <string name="home_meeting_room_title">Meeting room</string>
+    <string name="home_private_booth_title">Private\nbooth</string>
+    <string name="home_break_out_title">Break-out</string>
+    <string name="home_open_space_title">Open space</string>
+
+    <!--  Reservation Screen  -->
+    <string name="reservation_date_title">Date</string>
+    <string name="reservation_start_time_title">Start</string>
+    <string name="reservation_end_time_title">End</string>
+    <string name="reservation_available_title">Available</string>
+    <string name="reservation_reserved_title">Reserved</string>
+    <string name="reservation_selected_title">Seat: </string>
+    <string name="reservation_book_button_title">Book Now</string>
+
+    <plurals name="places_count">
+        <item quantity="one">%d place</item>
+        <item quantity="other">%d places</item>
+    </plurals>
+
+    <plurals name="places_left_count">
+        <item quantity="one">%d place left</item>
+        <item quantity="other">%d places left</item>
+    </plurals>
+</resources>

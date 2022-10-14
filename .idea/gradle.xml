@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -10,6 +11,30 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/base" />
+            <option value="$PROJECT_DIR$/modules/base/base_table" />
+            <option value="$PROJECT_DIR$/modules/base/base_ui" />
+            <option value="$PROJECT_DIR$/modules/celebrity" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_api" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_factory" />
+            <option value="$PROJECT_DIR$/modules/celebrity/core_impl" />
+            <option value="$PROJECT_DIR$/modules/features" />
+            <option value="$PROJECT_DIR$/modules/features/feature_booking" />
+            <option value="$PROJECT_DIR$/modules/features/feature_bookingapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_components" />
+            <option value="$PROJECT_DIR$/modules/features/feature_componentsapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_container" />
+            <option value="$PROJECT_DIR$/modules/features/feature_greeting" />
+            <option value="$PROJECT_DIR$/modules/features/feature_greetingapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_home" />
+            <option value="$PROJECT_DIR$/modules/features/feature_homeapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_registration" />
+            <option value="$PROJECT_DIR$/modules/features/feature_registrationapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_settings" />
+            <option value="$PROJECT_DIR$/modules/features/feature_settingsapi" />
+            <option value="$PROJECT_DIR$/modules/features/feature_signin" />
+            <option value="$PROJECT_DIR$/modules/features/feature_signinapi" />
           </set>
         </option>
       </GradleProjectSettings>

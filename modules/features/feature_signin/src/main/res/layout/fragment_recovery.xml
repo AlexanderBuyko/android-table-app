@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".signin.SignInFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:text="@string/recovery_title"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI30SB" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:gravity="center"
+        android:text="@string/recovery_signature"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16L" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/phone_number"
+        style="@style/Theme.Table.Widget.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginTop="54dp"
+        android:hint="@string/recovery_email_hint"
+        android:imeOptions="actionNext"
+        android:inputType="phone" />
+
+    <androidx.legacy.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_in_button"
+        style="@style/Theme.Table.Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginBottom="@dimen/margin_xhuge"
+        android:text="@string/recovery_button_title" />
+
+</LinearLayout>

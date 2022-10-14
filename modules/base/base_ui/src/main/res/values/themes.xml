@@ -1,0 +1,64 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <attr name="primaryButtonStyle" format="reference" />
+    <attr name="secondaryButtonStyle" format="reference" />
+    <attr name="progressableButtonStyle" format="reference" />
+    <attr name="inputFieldStyle" format="reference" />
+    <attr name="colorPrimaryDisabled" format="reference|color" />
+    <attr name="colorBackground" format="reference|color" />
+
+    <style name="Theme.Table" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="primaryButtonStyle">@style/Theme.Table.Widget.Button</item>
+        <item name="secondaryButtonStyle">@style/Theme.Table.Widget.Button.Secondary</item>
+        <item name="progressableButtonStyle">@style/Theme.Table.Widget.Button.Progressable</item>
+        <item name="inputFieldStyle">@style/Theme.Table.Widget.EditText</item>
+        <item name="colorBackground">@color/white</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="android:windowBackground">?attr/colorBackground</item>
+        <item name="colorSurface">@color/wild_sand</item>
+        <item name="colorAccent">@color/night_rider</item>
+        <item name="colorError">@color/coral_red</item>
+        <item name="colorOnBackground">@color/night_rider</item>
+        <item name="colorPrimary">@color/night_rider</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDisabled">@color/dove_gray</item>
+        <item name="colorSecondary">@color/wild_sand</item>
+        <item name="colorControlNormal">@color/dove_gray</item>
+        <item name="rippleColor">@color/cod_gray_10</item>
+
+        <!--Splash-->
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/ic_table_logo_animated</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1500</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Table.BottomSheet</item>
+    </style>
+
+    <style name="Theme.Table.BottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Theme.Table.Widget.BottomSheet</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">?attr/colorBackground</item>
+        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">
+            ?attr/colorBackground
+        </item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+
+        <item name="colorSurface">@color/wild_sand</item>
+        <item name="colorError">@color/coral_red</item>
+        <item name="colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/night_rider</item>
+        <item name="colorPrimary">@color/night_rider</item>
+        <item name="colorPrimaryDisabled">@color/dove_gray</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/wild_sand</item>
+        <item name="colorControlNormal">@color/dove_gray</item>
+        <item name="rippleColor">@color/cod_gray_10</item>
+    </style>
+
+</resources>

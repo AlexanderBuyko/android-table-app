@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".RegistrationFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="77dp"
+        android:text="@string/register_title"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI30SB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/register_signature"
+        android:textAppearance="@style/Theme.Table.TextAppearance.UI16L"
+        android:textColor="?attr/colorControlNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/phone_number"
+        style="@style/Theme.Table.Widget.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginTop="54dp"
+        android:hint="@string/register_phone_number_hint"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email"
+        style="@style/Theme.Table.Widget.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:hint="@string/register_email_hint"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone_number" />
+
+    <com.demonstration.baseui.widgets.widgets.NoChangingBackgroundTextInputLayout
+        android:id="@+id/password_container"
+        style="@style/Theme.Table.Widget.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginTop="@dimen/margin_normal"
+        app:counterEnabled="true"
+        app:counterMaxLength="@integer/register_password_max_length"
+        app:counterTextAppearance="@style/Theme.Table.TextAppearance.UI12R"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            style="@style/Theme.Table.Widget.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/register_password_hint"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="@integer/register_password_max_length" />
+    </com.demonstration.baseui.widgets.widgets.NoChangingBackgroundTextInputLayout>
+
+    <ImageView
+        android:id="@+id/sign_up_via_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:background="@drawable/sign_up_button_background"
+        android:paddingVertical="@dimen/margin_teeny"
+        android:src="@drawable/ic_google"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_via_git_hub"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/password_container"
+        app:layout_constraintTop_toBottomOf="@id/password_container" />
+
+    <ImageView
+        android:id="@+id/sign_up_via_git_hub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:background="@drawable/sign_up_button_background"
+        android:paddingVertical="@dimen/margin_teeny"
+        android:src="@drawable/ic_github"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_via_google"
+        app:layout_constraintEnd_toStartOf="@id/sign_up_via_facebook"
+        app:layout_constraintStart_toEndOf="@id/sign_up_via_google"
+        app:layout_constraintTop_toTopOf="@id/sign_up_via_google" />
+
+    <ImageView
+        android:id="@+id/sign_up_via_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up_button_background"
+        android:paddingVertical="@dimen/margin_teeny"
+        android:src="@drawable/ic_facebook"
+        app:layout_constraintBottom_toBottomOf="@id/sign_up_via_google"
+        app:layout_constraintEnd_toEndOf="@id/password_container"
+        app:layout_constraintStart_toEndOf="@id/sign_up_via_git_hub"
+        app:layout_constraintTop_toTopOf="@id/sign_up_via_google" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_account_button"
+        style="@style/Theme.Table.Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_huge"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:text="@string/register_create_button_title"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_via_google" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/bottom_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_account_button"
+        tools:text="Already have an account? Log In" />
+</androidx.constraintlayout.widget.ConstraintLayout>

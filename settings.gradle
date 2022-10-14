@@ -11,6 +11,28 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    enableFeaturePreview('VERSION_CATALOGS')
 }
+
 rootProject.name = "Table Application"
 include ':app'
+include ':modules:celebrity:core_impl'
+include ':modules:celebrity:core_factory'
+include ':modules:celebrity:core_api'
+include ':modules:base:base_table'
+include ':modules:base:base_ui'
+include ':modules:features:feature_container'
+include ':modules:features:feature_components'
+include ':modules:features:feature_componentsapi'
+include ':modules:features:feature_registration'
+include ':modules:features:feature_registrationapi'
+include ':modules:features:feature_greeting'
+include ':modules:features:feature_greetingapi'
+include ':modules:features:feature_signin'
+include ':modules:features:feature_signinapi'
+include ':modules:features:feature_home'
+include ':modules:features:feature_homeapi'
+include ':modules:features:feature_settings'
+include ':modules:features:feature_settingsapi'
+include ':modules:features:feature_booking'
+include ':modules:features:feature_bookingapi'
