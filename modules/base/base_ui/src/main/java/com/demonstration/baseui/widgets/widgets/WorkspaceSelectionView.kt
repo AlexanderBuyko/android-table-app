@@ -21,7 +21,6 @@ import com.demonstration.baseui.widgets.widgets.models.*
 import com.example.baseui.R
 import kotlin.math.hypot
 import kotlin.math.max
-import kotlin.math.min
 import kotlin.math.roundToInt
 
 
@@ -73,7 +72,8 @@ class WorkspaceSelectionView : View {
     private var previousSelectedWorkspaceColor: Int? = null
     private var previousSelectedTextAlpha: Int? = null
 
-    private lateinit var workspaces: List<Workspace>
+    private var workspaces: List<Workspace>? = null
+    private var callback: Callback? = null
 
     private val strategy = MovementStrategy()
 
@@ -90,6 +90,10 @@ class WorkspaceSelectionView : View {
 
     fun setWorkspaces(workspaces: List<Workspace>) {
         this.workspaces = workspaces
+    }
+
+    fun setCallback(callback: Callback?) {
+        this.callback = callback
     }
 
     override fun onSaveInstanceState(): Parcelable {
@@ -113,7 +117,7 @@ class WorkspaceSelectionView : View {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val viewWidth = measureViewSize(widthMeasureSpec)
         val viewHeight = measureViewSize(heightMeasureSpec)
-        min(viewWidth, viewHeight).also { viewSize ->
+        max(viewWidth, viewHeight).also { viewSize ->
             setMeasuredDimension(viewSize, viewSize)
         }
     }
@@ -147,27 +151,30 @@ class WorkspaceSelectionView : View {
     }
 
     private fun drawWorkspaces(canvas: Canvas) {
-        for (workspace in workspaces) {
-            calculateWorkspacePath(workspace.positions, 16.px)
+        workspaces?.let {
+            for (workspace in it) {
+                calculateWorkspacePath(workspace.positions, 16.px)
 
-            workspacePaint.color = getColor(workspace.getColorRes())
-            textPaint.alpha = if (workspace is SelectedWorkspace) 255 else 0
-            if (workspace is SelectedWorkspace) {
-                selectedWorkspaceColor?.let { workspacePaint.color = it }
-                selectedTextAlpha?.let { textPaint.alpha = it }
+                workspacePaint.color = getColor(workspace.getColorRes())
+                textPaint.alpha = if (workspace is SelectedWorkspace) 255 else 0
+                if (workspace is SelectedWorkspace) {
+                    selectedWorkspaceColor?.let { workspacePaint.color = it }
+                    selectedTextAlpha?.let { textPaint.alpha = it }
+                }
+
+                if (workspace is AvailableWorkspace &&
+                    workspace.name == previousSelectedWorkspaceName
+                ) {
+                    previousSelectedWorkspaceColor?.let { workspacePaint.color = it }
+                    previousSelectedTextAlpha?.let { textPaint.alpha = it }
+                }
+
+                canvas.drawPath(workspacePath, workspacePaint)
+
+                val xPos = segmentRect.centerX().toFloat()
+                val yPos = segmentRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2
+                canvas.drawText(workspace.name, xPos, yPos, textPaint)
             }
-
-            if (workspace is AvailableWorkspace &&
-                workspace.name == previousSelectedWorkspaceName) {
-                previousSelectedWorkspaceColor?.let { workspacePaint.color = it }
-                previousSelectedTextAlpha?.let { textPaint.alpha = it }
-            }
-
-            canvas.drawPath(workspacePath, workspacePaint)
-
-            val xPos = segmentRect.centerX().toFloat()
-            val yPos = segmentRect.centerY() - (textPaint.descent() + textPaint.ascent()) / 2
-            canvas.drawText(workspace.name, xPos, yPos, textPaint)
         }
     }
 
@@ -368,7 +375,7 @@ class WorkspaceSelectionView : View {
     }
 
     private fun handleOnSingleTapUp(event: MotionEvent): Boolean {
-        workspaces.map { workspace ->
+        workspaces?.map { workspace ->
             when (workspace) {
                 is SelectedWorkspace -> {
                     /*
@@ -402,7 +409,17 @@ class WorkspaceSelectionView : View {
                     workspace
                 }
             }
-        }.also { workspaces = it }
+        }
+            .also { workspaces = it }
+            .also {
+                val selectedWorkspace =
+                    workspaces?.filterIsInstance<SelectedWorkspace>()?.firstOrNull()
+                if (selectedWorkspace != null) {
+                    callback?.onSeatSelected(selectedWorkspace)
+                } else {
+                    callback?.onSeatReleased()
+                }
+            }
         invalidate()
         return true
     }
@@ -461,17 +478,22 @@ class WorkspaceSelectionView : View {
         const val SEGMENTS_COUNT = 5
     }
 
+    interface Callback {
+        fun onSeatSelected(workspace: Workspace)
+        fun onSeatReleased()
+    }
+
     internal class SavedState : BaseSavedState {
 
-        var workspaces: List<Workspace>
+        var workspaces: List<Workspace>?
 
-        constructor(workspaces: List<Workspace>, superState: Parcelable?) : super(superState) {
+        constructor(workspaces: List<Workspace>?, superState: Parcelable?) : super(superState) {
             this.workspaces = workspaces
         }
 
         private constructor(input: Parcel) : super(input) {
             workspaces = listOf()
-            input.readList(workspaces, List::class.java.classLoader)
+            input.readList(workspaces!!, List::class.java.classLoader)
         }
 
         override fun writeToParcel(out: Parcel, flags: Int) {

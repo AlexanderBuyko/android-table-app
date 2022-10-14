@@ -64,6 +64,14 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
         BookingSubtitle(getString(R.string.booking_subtitle)),
         BookingItem(
             id = "1",
+            roomName = "Open Space",
+            imageResource = R.drawable.ic_open_space,
+            date = "October 12, 2022",
+            time = "09:00 - 14:00",
+            peopleAmount = 3
+        ),
+        BookingItem(
+            id = "2",
             roomName = "Meeting room",
             imageResource = R.drawable.ic_meeting_room,
             date = "October 12, 2022",
@@ -71,21 +79,13 @@ class BookingFragment : BaseFragment<FragmentBookingBinding>() {
             peopleAmount = 1
         ),
         BookingItem(
-            id = "2",
+            id = "3",
             roomName = "Break out",
             imageResource = R.drawable.ic_break_out,
             date = "October 12, 2022",
             time = "09:00 - 14:00",
             peopleAmount = 2
         ),
-        BookingItem(
-            id = "3",
-            roomName = "Open Space",
-            imageResource = R.drawable.ic_open_space,
-            date = "October 12, 2022",
-            time = "09:00 - 14:00",
-            peopleAmount = 3
-        )
         /*BookingPlaceholder*/
     )
 

@@ -5,4 +5,6 @@ import com.demonstration.table.coreapi.CoreMediator
 
 interface BookingMediator: CoreMediator {
     fun openBookingScreen(navController: NavController)
+
+    fun openBookingScreenWithSlideAnim(navController: NavController)
 }

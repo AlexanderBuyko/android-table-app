@@ -19,10 +19,6 @@
             android:id="@+id/to_reservationFragmentDialog"
             app:destination="@id/reservationDialogFragment" />
 
-        <action
-            android:id="@+id/to_progressFragment"
-            app:destination="@id/progress_nav_graph" />
-
         <deepLink app:uri="android-app://table.demonstration.com/home" />
     </fragment>
 
@@ -39,6 +35,10 @@
         <action
             android:id="@+id/to_timePickerFragment"
             app:destination="@id/timePickerFragment" />
+
+        <action
+            android:id="@+id/to_progressFragment"
+            app:destination="@id/progress_nav_graph" />
     </dialog>
 
     <dialog

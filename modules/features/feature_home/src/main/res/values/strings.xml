@@ -15,7 +15,7 @@
     <string name="reservation_end_time_title">End</string>
     <string name="reservation_available_title">Available</string>
     <string name="reservation_reserved_title">Reserved</string>
-    <string name="reservation_selected_title">Seat: %1$s</string>
+    <string name="reservation_selected_title">Seat: </string>
     <string name="reservation_book_button_title">Book Now</string>
 
     <plurals name="places_count">
