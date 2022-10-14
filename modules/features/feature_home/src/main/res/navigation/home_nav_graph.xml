@@ -43,12 +43,12 @@
 
     <dialog
         android:id="@+id/datePickerFragment"
-        android:name="com.demostration.table.basetable.dialogs.DatePickerFragment"
+        android:name="com.demonstration.table.basetable.dialogs.DatePickerFragment"
         android:label="DatePickerDialog" />
 
     <dialog
         android:id="@+id/timePickerFragment"
-        android:name="com.demostration.table.basetable.dialogs.TimePickerFragment"
+        android:name="com.demonstration.table.basetable.dialogs.TimePickerFragment"
         android:label="TimePickerDialog" />
 
     <include app:graph="@navigation/progress_nav_graph" />

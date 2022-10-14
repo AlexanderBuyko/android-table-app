@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featurebooking.databinding.FragmentBookingBinding
-import com.demostration.table.basetable.base.BaseFragment
-import com.example.baseui.extentions.updateTopPaddingOnApplyWindowInsets
+import com.demonstration.table.basetable.base.BaseFragment
+import com.demonstration.baseui.widgets.extentions.updateTopPaddingOnApplyWindowInsets
 
 class BookingFragment : BaseFragment<FragmentBookingBinding>() {
 

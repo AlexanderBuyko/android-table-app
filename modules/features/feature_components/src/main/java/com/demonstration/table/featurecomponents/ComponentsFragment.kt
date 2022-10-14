@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featurecomponents.databinding.FragmentComponentsBinding
-import com.demostration.table.basetable.base.BaseFragment
+import com.demonstration.table.basetable.base.BaseFragment
 
 class ComponentsFragment : BaseFragment<FragmentComponentsBinding>() {
 
@@ -30,9 +30,5 @@ class ComponentsFragment : BaseFragment<FragmentComponentsBinding>() {
         ComponentsComponent
             .create((requireActivity().application as AppProvidersHolder).getAggregatingProvider())
             .inject(this)
-    }
-
-    companion object {
-        fun newInstance() = ComponentsFragment()
     }
 }

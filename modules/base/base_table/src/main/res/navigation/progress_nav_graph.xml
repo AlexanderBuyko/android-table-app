@@ -7,7 +7,7 @@
 
     <dialog
         android:id="@+id/progressFragment"
-        android:name="com.demostration.table.basetable.dialogs.ProgressFragment"
+        android:name="com.demonstration.table.basetable.dialogs.ProgressFragment"
         android:label="ProgressFragment"
         tools:layout="@layout/dialog_progress">
 

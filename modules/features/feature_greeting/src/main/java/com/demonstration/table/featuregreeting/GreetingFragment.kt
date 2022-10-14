@@ -11,9 +11,9 @@ import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featuregreeting.databinding.FragmentGreetingBinding
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import com.demonstration.table.featuresigninapi.SignInMediator
-import com.demostration.table.basetable.base.BaseFragment
-import com.example.baseui.extentions.setSafeOnClickListener
-import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
+import com.demonstration.table.basetable.base.BaseFragment
+import com.demonstration.baseui.widgets.extentions.setSafeOnClickListener
+import com.demonstration.baseui.widgets.extentions.updateTopMarginOnApplyWindowInsets
 import javax.inject.Inject
 
 class GreetingFragment : BaseFragment<FragmentGreetingBinding>() {

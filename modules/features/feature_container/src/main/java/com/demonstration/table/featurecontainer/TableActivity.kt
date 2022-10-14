@@ -26,8 +26,8 @@ import com.demonstration.table.featurecontainer.databinding.LayoutSplashBinding
 import com.demonstration.table.featuregreetingapi.GreetingMediator
 import com.demonstration.table.featurehomeapi.HomeMediator
 import com.demonstration.table.featuresettingsapi.SettingsMediator
-import com.example.baseui.extentions.hasInBackStack
-import com.example.baseui.extentions.updateBottomPaddingOnApplyWindowInsets
+import com.demonstration.baseui.widgets.extentions.hasInBackStack
+import com.demonstration.baseui.widgets.extentions.updateBottomPaddingOnApplyWindowInsets
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

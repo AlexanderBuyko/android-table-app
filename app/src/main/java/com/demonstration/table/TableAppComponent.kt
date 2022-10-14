@@ -8,7 +8,7 @@ import com.demonstration.table.featurebooking.BookingExternalModule
 import com.demonstration.table.featuregreeting.GreetingExternalModule
 import com.demonstration.table.featurehome.dagger.HomeExternalModule
 import com.demonstration.table.featuresignin.SignInExternalModule
-import com.demonstrations.table.featuresettings.SettingsExternalModule
+import com.demonstration.table.featuresettings.SettingsExternalModule
 import dagger.Component
 import javax.inject.Singleton
 

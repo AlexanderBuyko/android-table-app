@@ -11,9 +11,9 @@ import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featuregreetingapi.GreetingMediator
 import com.demonstration.table.featuresignin.SignInComponent
 import com.demonstration.table.featuresignin.databinding.FragmentRecoveryBinding
-import com.demostration.table.basetable.base.BaseFragment
-import com.example.baseui.extentions.setSafeOnClickListener
-import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
+import com.demonstration.table.basetable.base.BaseFragment
+import com.demonstration.baseui.widgets.extentions.setSafeOnClickListener
+import com.demonstration.baseui.widgets.extentions.updateTopMarginOnApplyWindowInsets
 import javax.inject.Inject
 
 

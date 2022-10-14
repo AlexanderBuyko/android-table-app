@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.demonstrations.table.featuresettings.SettingsFragment"
+        android:name="com.demonstration.table.featuresettings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
 

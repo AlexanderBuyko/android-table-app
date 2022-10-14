@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import com.demonstration.baseui.widgets.extentions.*
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featurehomeapi.HomeMediator
@@ -15,10 +16,9 @@ import com.demonstration.table.featureregistrationapi.RegistrationMediator
 import com.demonstration.table.featuresignin.R
 import com.demonstration.table.featuresignin.SignInComponent
 import com.demonstration.table.featuresignin.databinding.FragmentSignInBinding
-import com.demostration.table.basetable.base.BaseFragment
+import com.demonstration.table.basetable.base.BaseFragment
 import com.example.baseui.R as baseR
-import com.example.baseui.extentions.*
-import com.example.baseui.factories.NavOptionsFactory
+import com.demonstration.baseui.widgets.factories.NavOptionsFactory
 import javax.inject.Inject
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>() {
@@ -97,7 +97,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
                 }
             }
             recoveryTitle.setSafeOnClickListener {
-                navController.navigate(R.id.recoveryFragment, null, navOptionsFactory.createDefault())
+                navController.navigate(
+                    R.id.recoveryFragment,
+                    null,
+                    navOptionsFactory.createDefault()
+                )
             }
             signInButton.setSafeOnClickListener {
                 homeMediator.openHomeScreen(navController)

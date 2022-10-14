@@ -8,18 +8,18 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import com.demonstration.baseui.widgets.extentions.navigateWith
+import com.demonstration.baseui.widgets.extentions.setSafeOnClickListener
+import com.demonstration.baseui.widgets.extentions.updateTopMarginOnApplyWindowInsets
+import com.demonstration.baseui.widgets.factories.NavOptionsFactory
+import com.demonstration.table.basetable.base.BaseFragment
+import com.demonstration.table.basetable.dialogs.CapableOfCompleting
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.coreapi.models.Config
 import com.demonstration.table.featurehome.R
 import com.demonstration.table.featurehome.dagger.HomeComponent
 import com.demonstration.table.featurehome.databinding.FragmentHomeBinding
-import com.demostration.table.basetable.base.BaseFragment
-import com.demostration.table.basetable.dialogs.CapableOfCompleting
-import com.example.baseui.extentions.navigateWith
-import com.example.baseui.extentions.setSafeOnClickListener
-import com.example.baseui.extentions.updateTopMarginOnApplyWindowInsets
-import com.example.baseui.factories.NavOptionsFactory
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
