@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/phone_number" />
 
-    <com.example.baseui.widgets.NoChangingBackgroundTextInputLayout
+    <com.demonstration.baseui.widgets.widgets.NoChangingBackgroundTextInputLayout
         android:id="@+id/password_container"
         style="@style/Theme.Table.Widget.TextInputLayout"
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="@integer/register_password_max_length" />
-    </com.example.baseui.widgets.NoChangingBackgroundTextInputLayout>
+    </com.demonstration.baseui.widgets.widgets.NoChangingBackgroundTextInputLayout>
 
     <ImageView
         android:id="@+id/sign_up_via_google"

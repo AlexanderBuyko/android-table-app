@@ -7,7 +7,7 @@ import com.demonstration.table.featurebooking.databinding.ListItemBookingBinding
 import com.demonstration.table.featurebooking.databinding.ListItemPlaceholderBinding
 import com.demonstration.table.featurebooking.databinding.ListItemSubtitleBinding
 import com.demonstration.table.featurebooking.databinding.ListItemTitleBinding
-import com.example.baseui.extentions.setSafeOnClickListener
+import com.demonstration.baseui.widgets.extentions.setSafeOnClickListener
 
 abstract class BaseBookingViewHolder<T : BookingListItem>(itemView: ViewBinding) :
     RecyclerView.ViewHolder(itemView.root) {

@@ -56,4 +56,5 @@ dependencies {
     implementation project(":modules:base:base_table")
     implementation project(":modules:base:base_ui")
     implementation project(":modules:features:feature_homeapi")
+    implementation project(":modules:features:feature_bookingapi")
 }

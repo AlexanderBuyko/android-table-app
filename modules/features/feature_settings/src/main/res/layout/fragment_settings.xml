@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.demonstrations.table.featuresettings.SettingsFragment">
+    tools:context="com.demonstration.table.featuresettings.SettingsFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"

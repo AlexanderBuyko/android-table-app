@@ -4,7 +4,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import com.demonstration.table.featureregistrationapi.RegistrationMediator
-import com.example.baseui.factories.NavOptionsFactory
+import com.demonstration.baseui.widgets.factories.NavOptionsFactory
 import javax.inject.Inject
 
 class RegistrationMediatorImpl @Inject constructor(

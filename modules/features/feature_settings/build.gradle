@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.demonstrations.table.featuresettings'
+    namespace 'com.demonstration.table.featuresettings'
     compileSdk 33
 
     defaultConfig {

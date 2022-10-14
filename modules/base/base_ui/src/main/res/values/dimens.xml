@@ -38,5 +38,6 @@
     <dimen name="input_field_min_height">56dp</dimen>
 
     <dimen name="splash_icon_padding">44dp</dimen>
+    <dimen name="workspace_selection_min_size">192dp</dimen>
 
 </resources>

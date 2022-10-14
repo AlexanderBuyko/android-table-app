@@ -10,13 +10,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import com.demonstration.baseui.widgets.extentions.*
 import com.demonstration.table.coreapi.holders.ActivityProvidersHolder
 import com.demonstration.table.coreapi.holders.AppProvidersHolder
 import com.demonstration.table.featurehomeapi.HomeMediator
 import com.demonstration.table.featureregistration.databinding.FragmentRegistrationBinding
 import com.demonstration.table.featuresigninapi.SignInMediator
-import com.demostration.table.basetable.base.BaseFragment
-import com.example.baseui.extentions.*
+import com.demonstration.table.basetable.base.BaseFragment
 import javax.inject.Inject
 import com.example.baseui.R as baseR
 
