@@ -52,7 +52,7 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
     lateinit var navigationId: NavigationId
 
     private lateinit var binding: ActivityTableBinding
-    private lateinit var splashBinding: LayoutSplashBinding
+//    private lateinit var splashBinding: LayoutSplashBinding
 
     private val navController: NavController
         get() = navHostFragment.navController
@@ -102,7 +102,7 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTableBinding.inflate(layoutInflater)
-        splashBinding = LayoutSplashBinding.bind(binding.root)
+//        splashBinding = LayoutSplashBinding.bind(binding.root)
         setContentView(binding.root)
         initDaggerComponent()
         initNavigationGraph()
@@ -154,26 +154,26 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
 
     private fun prepareForSplashExitAnimation() {
         exitAnimationPreparation = lifecycleScope.async {
-            with(splashBinding) {
+/*            with(splashBinding) {
                 val bitmap = splashIcon.drawToBitmap()
                 val leftBitmapPart = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width / 2, bitmap.height)
                 val rightBitmapPart =
                     Bitmap.createBitmap(bitmap, bitmap.width / 2, 0, bitmap.width / 2, bitmap.height)
                 leftCurtain.setImageBitmap(leftBitmapPart)
                 rightCurtain.setImageBitmap(rightBitmapPart)
-            }
+            }*/
         }
     }
 
     private fun initComponents() {
         bottomNavigation.updateBottomPaddingOnApplyWindowInsets()
-        ResourcesCompat.getDrawable(resources, baseR.drawable.ic_table_logo_end, null)
+/*        ResourcesCompat.getDrawable(resources, baseR.drawable.ic_table_logo_end, null)
             ?.apply {
                 splashBinding.splashIcon.setPadding(
                     resources.getDimension(baseR.dimen.splash_icon_padding).toInt()
                 )
             }
-            .also { splashBinding.splashIcon.setImageDrawable(it) }
+            .also { splashBinding.splashIcon.setImageDrawable(it) }*/
     }
 
     private fun initBottomNavigation() {
@@ -248,7 +248,7 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
     }
 
     private fun handleSplashExitAnimation() {
-        val animator = SplashScreenAnimator.Builder()
+/*        val animator = SplashScreenAnimator.Builder()
             .splashBinding(splashBinding)
             .build()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -268,7 +268,7 @@ class TableActivity : AppCompatActivity(), ActivityProvidersHolder {
                 splashIcon.isVisible = false
                 bulletIcon.isVisible = false
             }
-        }
+        }*/
     }
 
     companion object {
